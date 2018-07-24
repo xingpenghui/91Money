@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="dv1">
+    <p>直接实现插值: {{ rawHtml }}</p>
+    <p>标记内容以html显示: <span v-html="rawHtml"></span></p>
+    <h3>{{flag==0?"有效":"无效"}}</h3>
+</div>
+<div id="dv2">
+    <h1>计算属性 VS 函数 ?</h1>
+    <h1>原数据：{{message}}</h1>
+    <h1>函数：{{rm1()}}</h1>
+    <h1>计算属性：{{rm2}}</h1>
+
+</div>
+<script type="application/javascript">
+    var app1=new Vue(
+        {
+            el:"#dv1",
+            data:{
+                rawHtml:"<h1>看到了吗</h1>",
+                flag:0
+            }
+        }
+    );
+    var app2 = new Vue({
+        el: '#dv2',
+        data: {
+            message: 'QFJAVA'
+        },
+        computed: {
+            // 计算属性的 getter
+            rm2: function () {
+                // `this` 指向 vm 实例
+                console.log("计算属性反转")
+                return this.message.split('').reverse().join('')
+            }
+        },
+        // 在组件中
+        methods: {
+            rm1: function () {
+                console.log("函数反转")
+                return this.message.split('').reverse().join('')
+            }
+        }
+    })
+</script>
+</body>
+</html>

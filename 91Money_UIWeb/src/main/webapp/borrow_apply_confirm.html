@@ -1,0 +1,154 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>我要借款</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/newstyle.css"/>
+    <link rel="stylesheet" href="css/user.css"/>
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+
+    <style type="text/css">
+        .my-list-group li {
+            list-style: disc inside none;
+            padding: 5px 0 0 5px;
+        }
+    </style>
+</head>
+<body>
+<script src="script/head.js"></script>
+
+<div class="wrapper wbgcolor">
+
+    <!-- 网页内容 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">信用贷</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-primary mb15">
+                            认证后可借金额 <i>¥ ${account.remainBorrowLimit}</i>
+                        </p>
+                        <h4>申请条件</h4>
+                        <ul class="my-list-group">
+                            <li>
+                                <c:if test="${!userInfo.isBasicInfo}">
+                                    <a href="/personal_basic">填写基本资料</a>
+                                    <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                                </c:if>
+                                <c:if test="${userInfo.isBasicInfo}">
+                                    填写基本资料
+                                    <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                                </c:if>
+                            </li>
+                            <li>
+                                <c:if test="${!userInfo.isRealAuth}">
+                                    <a href="/real_auth">身份认证</a>
+                                    <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                                </c:if>
+                                <c:if test="${userInfo.isRealAuth}">
+                                    身份认证<span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                                </c:if>
+                            </li>
+                            <li>
+                                <c:if test="${userInfo.authScore lt creditBorrowScore}">
+                                    <a href="/user_file">材料认证分数达到${creditBorrowScore}分</a>
+                                    <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                                </c:if>
+                                <c:if test="${userInfo.authScore ge creditBorrowScore}">
+                                    材料认证分数达到${creditBorrowScore}分<span class="glyphicon glyphicon-ok" style="color:green;">
+                                    </span>
+                                </c:if>
+                            </li>
+                            <li>视频认证
+                                <c:if test="${!userInfo.isVedioAuth}">
+                                    <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                                </c:if>
+                                <c:if test="${userInfo.isVedioAuth}">
+                                    <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                                </c:if>
+                            </li>
+                            <div class="text-center">
+                                <c:choose>
+                                    <c:when test="${ userInfo.isBasicInfo && userInfo.isRealAuth && (userInfo.authScore >= creditBorrowScore) && userInfo.isVedioAuth}">
+                                        <a href="borrow_apply" class="btn btn-primary">
+                                            申请贷款
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="#" class="btn btn-default">
+                                            申请贷款
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">车易贷</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-primary mb15">
+                            认证后可借金额 <i>¥ 10,000.00</i>
+                        </p>
+                        <h4>申请条件</h4>
+                        <ul class="my-list-group">
+                            <li>填写基本资料</li>
+                            <li>身份认证</li>
+                            <li>材料认证分数达到30分</li>
+                            <li>提交车辆抵押相关资料</li>
+                            <li>视频认证</li>
+                        </ul>
+                        <div class="text-center">
+                            <a href="#" class="btn btn-primary">
+                                申请贷款
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">房易贷</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-primary mb15">
+                            可借金额 <i>¥ 10,0000.00</i>
+                        </p>
+                        <ul class="my-list-group">
+                            <li>填写基本资料</li>
+                            <li>身份认证</li>
+                            <li>材料认证分数达到50分</li>
+                            <li>提交房屋抵押相关资料</li>
+                            <li>视频认证</li>
+                        </ul>
+                        <div class="text-center">
+                            <a href="#" class="btn btn-primary">
+                                申请贷款
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="script/foot.js"></script>
+</body>
+</html>

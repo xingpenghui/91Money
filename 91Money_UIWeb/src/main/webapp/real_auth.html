@@ -1,0 +1,228 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>91Money平台</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/common.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/user.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="script/webuploader-0.1.5/webuploader.css">
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/jquery.form.js"></script>
+    <script type="text/javascript" src="script/layer/layer.js" ></script>
+    <script type="text/javascript" src="script/webuploader-0.1.5/webuploader.min.js"></script>
+    <script type="text/javascript" src="script/common.js"></script>
+    <script type="text/javascript" src="script/user.js" ></script>
+   <style>
+       .file-item.thumbnail, .file-item.thumbnail image{
+           width: 300px;
+           height: 200px;
+       }
+       .upload-state-done{
+           border: #0fa24e 3px dashed;
+           background-color: rgba(16, 253, 107, 0.16);
+       }
+
+       #uploader-demo1, #uploader-demo2{
+           margin-bottom: 10px;
+       }
+
+
+   </style>
+</head>
+<body>
+<script src="script/head.js"></script>
+<!--个人中心-->
+<div class="wrapper wbgcolor">
+    <div class="w1200 personal">
+        <div class="credit-ad"><img src="images/clist1.jpg" width="1200" height="96"></div>
+
+        <script src="script/nav.js"></script>
+
+        <div class="personal-main">
+            <div class=" panel panel-default">
+                <div class="panel-heading">实名认证</div>
+                <div class="panel panel-body">
+
+                    <form class="form-horizontal" id="realAuthForm" method="post" action="real_auth_save" novalidate="novalidate">
+                        <fieldset>
+                            <div class="form-group">
+                                <p class="text-center text-danger">为保护您账户安全，实名认证成功之后不能修改信息，请认真填写！</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label ">用户名</label>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">${logininfo.username }</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="realName">姓名</label>
+                                <div class="col-sm-4">
+                                    <input id="realname" name="realname" class="form-control" type="text" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4  control-label" for="sex">性别</label>
+                                <div class="col-sm-4">
+                                    <select id="sex" class="form-control" name="sex" size="1">
+                                        <option value="0">男</option>
+                                        <option value="1">女</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4  control-label" for="idnumber">证件号码</label>
+                                <div class="col-sm-4">
+                                    <input id="idNumber" class="form-control" name="idNumber"  type="text" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4  control-label" for="birthDate">出生日期</label>
+                                <div class="col-sm-4">
+                                    <input id="birthDate"  class="form-control" name="birthDate" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4  control-label" for="address">证件地址</label>
+                                <div class="col-sm-4">
+                                    <input id="address" class="form-control" name="address"  type="text" style="max-width: 100%;width:500px;">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4  control-label" for="address">身份证照片</label>
+                                <div class="col-sm-8">
+                                    <p class="text-help text-primary">请点击“选择图片”,选择证件的正反两面照片。</p>
+                                    <!--dom结构部分-->
+                                    <div id="uploader-demo1">
+                                        <!--用来存放item-->
+                                        <div id="fileList1" class="uploader-list"></div>
+                                        <div id="filePicker1">上传身份证正面照片</div>
+                                    </div>
+                                    <!--dom结构部分-->
+                                    <div id="uploader-demo2">
+                                        <!--用来存放item-->
+                                        <div id="fileList2" class="uploader-list"></div>
+                                        <div id="filePicker2">上传身份证反面照片</div>
+                                    </div>
+
+
+                                    <input type="hidden" name="image1" id="uploadImage1" />
+                                    <input type="hidden" name="image2" id="uploadImage2" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="submit" class="btn btn-primary col-sm-offset-4" ><i class="icon-ok"></i> 提交认证</button>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+<script src="script/foot.js"></script>
+
+
+<script>
+
+    $(function(){
+
+        $('#realAuthForm').ajaxForm(function(r){
+
+            if(r.code == 0){
+                layer.alert(r.msg, function(){
+                    window.location.reload();
+                })
+            }else{
+                layer.alert(r.msg);
+            }
+        });
+
+
+        // 初始化Web Uploader
+        var uploader1 = WebUploader.create(getOption('filePicker1'))
+            .on( 'fileQueued', function( file ) {
+                fileQueued(file, 'fileList1',uploader1 );
+            })
+            .on( 'uploadSuccess', function( file, response ) {
+                uploadSuccess(file, response, 'uploadImage1');
+            })
+            .on( 'error', function( handler ) {
+                checkError(handler);
+            });
+
+        var uploader2 = WebUploader.create(getOption('filePicker2'))
+            .on( 'fileQueued', function( file ) {
+                fileQueued(file, 'fileList2',uploader2 );
+            })
+            .on( 'uploadSuccess', function( file, response ) {
+                uploadSuccess(file, response, 'uploadImage2');
+            })
+            .on( 'error', function( handler ) {
+                checkError(handler);
+            });
+
+        //基本配置
+        function getOption(pickId){
+            return {
+                auto: true,// 选完文件后，是否自动上传。
+                swf: 'script/webuploader-0.1.5/Uploader.swf',// swf文件路径
+                server: 'real_auth_upload',// 文件接收服务端。
+                fileNumLimit: 1,
+                pick: {
+                    id:'#' + pickId,
+                    multiple: false
+                },// 选择文件的按钮。可选。内部根据当前运行是创建，可能是input元素，也可能是flash
+                accept: {// 只允许选择图片文件。
+                    title: 'Images',
+                    extensions: 'gif,jpg,jpeg,bmp,png',
+                    mimeTypes: 'image/*'
+                }
+            }
+        }
+
+        //显示缩略图
+        function fileQueued( file , listId, uploader) {
+            var $li = $(
+                '<div id="' + file.id + '" class="file-item thumbnail">' +
+                '<img>' +
+                '<div class="info">' + file.name + '</div>' +
+                '</div>'
+            );
+            var $img = $li.find('img');
+            // $list为容器jQuery实例
+            var $list = $('#' + listId);
+            $list.append( $li );
+            uploader.makeThumb( file, function( error, src ) {
+                if ( error ) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+                $img.attr( 'src', src );//给图片的地址赋值
+            }, 300, 200 );
+        }
+
+        //成功后的页面处理
+        function uploadSuccess( file, response, imageInputId ) {
+            $( '#'+file.id ).addClass('upload-state-done');
+            $('#' + imageInputId).val(response.url);
+        }
+
+        //提交前检查
+        function checkError(handler){
+            if(handler == 'Q_EXCEED_NUM_LIMIT'){
+                layer.alert('只能选择一个文件');
+            }
+        }
+    })
+</script>
+</body>
+</html>

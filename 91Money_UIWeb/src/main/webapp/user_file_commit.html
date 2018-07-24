@@ -1,0 +1,79 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>91Money平台</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/common.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="css/user.css"/>
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/jquery.form.js"></script>
+
+    <script type="text/javascript" src="script/common.js"></script>
+    <script type="text/javascript" src="script/user.js"></script>
+
+
+</head>
+<body>
+<script src="script/head.js"></script>
+<!--个人中心-->
+<div class="wrapper wbgcolor">
+    <div class="w1200 personal">
+        <div class="credit-ad"><img src="images/clist1.jpg" width="1200" height="96"></div>
+
+        <script src="script/nav.js"></script>
+
+        <div class="personal-main">
+            <div class=" panel panel-default">
+                <div class="panel-heading">风控资料</div>
+                <div class="panel-body">
+
+                    <form method="POST" action="user_file_save_type" id="editForm">
+
+                        <c:forEach items="${userFiles}" var="file">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <img src="${file.file}"/>
+                                    <div class="caption">
+                                        <p>
+                                            <input type="hidden" name="id" value="${file.id}"/>
+                                            <select class="form-control" name="fileType" style="width: 180px">
+                                                <c:forEach items="${fileTypes}" var="type">
+                                                    <option value="${type.id}">${type.title}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                        <div class="col-sm-12 text-center">
+                            <button id="submitFileType" type="submit" class="btn btn-primary">
+                                确定提交
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+<script src="script/foot.js"></script>
+
+
+<script>
+    $(function () {
+        $("#editForm").ajaxForm(function (r) {
+            //window.location.reload();
+        });
+    });
+</script>
+</body>
+</html>

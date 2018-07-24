@@ -1,0 +1,160 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>91Money平台</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/common.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="script/webuploader-0.1.5/webuploader.css">
+
+    <link rel="stylesheet" type="text/css" href="css/user.css"/>
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/jquery.form.js"></script>
+    <script type="text/javascript" src="script/webuploader-0.1.5/webuploader.min.js"></script>
+
+    <script type="text/javascript" src="script/common.js"></script>
+    <script type="text/javascript" src="script/user.js" ></script>
+
+
+    <style>
+        .file-item.thumbnail, .file-item.thumbnail image{
+            width: 300px;
+            height: 240px;
+        }
+
+        .upload-state-done{
+            border: #0fa24e 3px dashed;
+            background-color: rgba(16, 253, 107, 0.16);
+        }
+
+        #uploader-demo{
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<script src="script/head.js"></script>
+<!--个人中心-->
+<div class="wrapper wbgcolor">
+    <div class="w1200 personal">
+        <div class="credit-ad"><img src="images/clist1.jpg" width="1200" height="96"></div>
+
+        <script src="script/nav.js"></script>
+
+        <div class="personal-main">
+            <div class=" panel panel-default">
+                <div class="panel-heading">风控资料</div>
+                <div class="panel-body">
+
+                    <c:forEach items="${userFiles}" var="file">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="${file.file}"/>
+                                <div class="caption">
+                                    <h4>${file.fileType.title}</h4>
+                                    <p>得分：${file.score} &nbsp;&nbsp;状态：${file.stateDisplay}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <!--dom结构部分-->
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" class="uploader-list"></div>
+                        <div id="filePicker">上传风控资料</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+<script src="script/foot.js"></script>
+
+
+<script>
+
+    $(function(){
+
+        // 初始化Web Uploader
+        var uploader = WebUploader.create(getOption('filePicker'))
+            .on( 'fileQueued', function( file ) {
+                fileQueued(file, 'fileList',uploader );
+            })
+            .on( 'uploadSuccess', function( file, response ) {
+                uploadSuccess(file, response, 'uploadImage');
+            })
+            .on( 'uploadProgress', function( file, percentage ) {
+                uploadProgress(file, percentage);
+            });
+
+
+        //基本配置
+        function getOption(pickId){
+            return {
+                auto: true,// 选完文件后，是否自动上传。
+                swf: 'script/webuploader-0.1.5/Uploader.swf',// swf文件路径
+                server: 'user_file_upload',// 文件接收服务端。
+                pick: {
+                    id:'#' + pickId
+                },// 选择文件的按钮。可选。内部根据当前运行是创建，可能是input元素，也可能是flash
+                accept: {// 只允许选择图片文件。
+                    title: 'Images',
+                    extensions: 'gif,jpg,jpeg,bmp,png',
+                    mimeTypes: 'image/*'
+                }
+            }
+        }
+
+        //显示缩略图
+        function fileQueued( file , listId, uploader) {
+            var $li = $(
+                '<div id="' + file.id + '" class="file-item thumbnail">' +
+                '<img>' +
+                '<div class="info">' + file.name + '</div>' +
+                '</div>'
+            );
+            var $img = $li.find('img');
+            // $list为容器jQuery实例
+            var $list = $('#' + listId);
+            $list.append( $li );
+            uploader.makeThumb( file, function( error, src ) {
+                if ( error ) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+                $img.attr( 'src', src );//给图片的地址赋值
+            }, 300, 200 );
+        }
+
+        //成功后的页面处理
+        function uploadSuccess( file, response, imageInputId ) {
+            $( '#'+file.id ).addClass('upload-state-done');
+            window.location.reload();
+        }
+
+        function uploadProgress(file, percentage){
+            var $li = $( '#'+file.id );
+            var $percent = $li.find('.progress');
+
+            // 避免重复创建
+            if ( !$percent.length ) {
+                $percent = $('<div class="progress" style="height:3px;">\n' +
+                    '  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'+percentage * 100+'" aria-valuemin="0" aria-valuemax="100" style="width: '+percentage * 100+'%;">\n' +
+                    '    <span class="sr-only">'+percentage * 100+' Complete</span>\n' +
+                    '  </div>\n' +
+                    '</div>')
+                    .appendTo( $li )
+                    .find('span');
+            }
+        }
+    })
+</script>
+</body>
+</html>

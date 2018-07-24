@@ -1,0 +1,465 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>我要借款</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+
+</head>
+<body>
+<script src="script/head.js"></script>
+
+<script type="text/javascript">
+    function keys() {
+        var id = "12";
+        if (id != "") {
+            window.location.href = "/p2p/query.do?id=12";
+        } else {
+            alert("请先登入!");
+            window.location.href = "login.html";
+        }
+    }
+</script>
+<!--注册-->
+<style>
+    body {
+        background: #f3f3f3;
+    }
+
+    .applycon {
+        background: #f3f3f3;
+    }
+
+    .applyc {
+        width: 1200px;
+        background: #fff;
+        margin: 13px auto; /*padding:15px;*/
+    }
+
+    .applyc1 {
+        padding: 50px 38px 70px;
+    }
+
+    .applyc2 {
+        padding: 52px 157px 35px;
+        background: #f5fbfe;
+    }
+
+    .applyc2 .applyc2l, .applyc2 .applyc2r {
+        width: 442px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 32px;
+        vertical-align: middle;
+    }
+
+    .applyc2 .applyc2l {
+        border-right: 1px solid #ccc;
+    }
+
+    .applyc2 .applyc2l h3, .applyc2 .applyc2r h3 {
+        height: 50px;
+        line-height: 45px;
+        font-size: 24px;
+        color: #fff;
+        font-weight: bold;
+        background: url(images/borrow_img1.png) no-repeat center top;
+    }
+
+    .applyc3 {
+        padding: 45px 100px 65px;
+        background: #fff;
+    }
+
+    .applyc3 h3 {
+        width: 100%;
+        text-align: center;
+        height: 50px;
+        line-height: 45px;
+        font-size: 24px;
+        color: #fff;
+        font-weight: bold;
+        background: url(images/borrow_img1.png) no-repeat center top;
+    }
+
+    .applyc3 ul {
+        margin: 45px 0 55px;
+    }
+
+    .applyc3 ul li {
+        float: left;
+    }
+
+    .applyc3 ul .rad {
+        width: 141px;
+        height: 141px;
+        font-weight: bold;
+        font-size: 24px;
+        color: #fff;
+        line-height: 141px;
+        vertical-align: middle;
+        text-align: center;
+        background: url(images/rad.png) no-repeat center;
+    }
+
+    .applyc3 ul .arrow {
+        margin-top: 65px;
+        width: 30px;
+        height: 10px;
+        background-color: #64B4E6;
+    }
+
+    .applyc3 a {
+        display: block;
+        width: 200px;
+        margin: 0 auto;
+        height: 45px;
+        line-height: 45px;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+        background: #ffa269;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+
+    .applyc4 {
+        padding: 55px 45px;
+        text-align: center;
+        background: #f5fbfe;
+    }
+
+    .applyc4 h3 {
+        width: 100%;
+        text-align: center;
+        height: 50px;
+        line-height: 45px;
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: #fff;
+        font-weight: bold;
+        background: url(images/borrow_img1.png) no-repeat center top;
+    }
+
+    .applyc4 p {
+        font-size: 14px;
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+    }
+
+    .nzx_fgs_titlen {
+        background: #5fb4e5;
+    }
+
+    #nzx_fgs table tr td, #nzx_fgs table tr th {
+        height: 32px;
+    }
+
+    .nzx_fgs {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #nzx_fgs_title th {
+        background: #f5fbfe;
+        color: #999;
+    }
+
+    #nzx_fgs .nzx_fgs_title td {
+        background: #f5fbfe;
+    }
+
+    #nzx_fgs .nzx_fgs_titlen td {
+        color: #fff;
+    }
+
+    .applyform h3 {
+        width: 350px;
+        text-align: center;
+        height: 50px;
+        line-height: 45px;
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: #fff;
+        font-weight: bold;
+        background: url(images/borrow_img1.png) no-repeat center top;
+    }
+
+    .appstyle {
+        margin-bottom: 35px;
+        margin-left: 75px;
+    }
+
+    .appstyle a {
+        display: block;
+        width: 90px;
+        height: 35px;
+        border: 1px solid #ff9852;
+        line-height: 35px;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 18px;
+        color: #ff9852;
+        font-weight: bold;
+        margin-right: 10px;
+        border-radius: 50px;
+        float: left;
+    }
+
+    #appstyle .appon {
+        background: #ff9852;
+        color: #fff;
+    }
+
+    .apform .trline32 {
+        height: 32px;
+        margin-bottom: 10px;
+    }
+
+    .apform table tr td {
+        height: 44px;
+        line-height: 44px;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+
+    .applyBtn, .applyBtnenterprize {
+        display: block;
+        width: 240px;
+        height: 47px;
+        line-height: 47px;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 22px;
+        color: #fff;
+        background: #ff9852;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .applyBtn:hover, .applyBtnenterprize:hover {
+        background: #ff6d10;
+        color: #fff;
+    }
+
+    .apform .w100 {
+        width: 100px;
+        text-align: right;
+        display: block;
+        margin-right: 10px;
+    }
+
+    .appinput {
+        width: 160px;
+        padding: 0 5px;
+        height: 30px;
+        line-height: 30px;
+        vertical-align: middle;
+        text-align: left;
+        border: 1px solid #ccc;
+    }
+
+    .apform .w120 {
+        width: 85px;
+        text-align: center;
+    }
+
+    .appinputimg1 {
+        width: 140px;
+        padding: 0 25px 0 5px;
+        background: url(images/yuan.png) no-repeat 150px center;
+    }
+
+    .appinputimg2 {
+        width: 115px;
+        padding: 0 50px 0 5px;
+        background: url(images/pinfm.png) no-repeat 125px center;
+    }
+
+    .appinputimg3 {
+        width: 140px;
+        padding: 0 25px 0 5px;
+        background: url(images/year.png) no-repeat 150px center;
+    }
+
+    .myselect {
+        color: #999;
+    }
+
+    #divselect {
+        width: 172px;
+        position: relative;
+        z-index: 10000;
+    }
+
+    #divselect cite {
+        width: 130px;
+        height: 32px;
+        line-height: 32px;
+        margin: 6px 0;
+        display: block;
+        color: #999;
+        cursor: pointer;
+        font-style: normal;
+        padding-left: 10px;
+        padding-right: 30px;
+        text-align: left;
+        border: 1px solid #ccc;
+    }
+
+    #divselect ul {
+        width: 150px;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #fff;
+        background-color: #ffffff;
+        position: absolute;
+        z-index: 20000;
+        margin-top: -7px;
+        margin-left: 0px;
+        display: none;
+        padding: 8px 10px;
+    }
+
+    #divselect ul li {
+        height: 32px;
+        line-height: 32px;
+    }
+
+    #divselect ul li a {
+        display: block;
+        height: 32px;
+        color: #999;
+        text-decoration: none;
+    }
+
+    #divselect ul li a:hover {
+        color: #38b6ff;
+    }
+
+    .w250 {
+        width: 25%;
+        text-align: center;
+    }
+
+    .w500 {
+        width: 50%;
+        text-align: center;
+    }
+</style>
+
+
+<div class="applycon">
+    <div class="applyc">
+
+        <div class="applyc2 clearfix">
+            <div class="fl applyc2l">
+                <h3>申请条件</h3>
+                <div class="mt25">
+                    <p>年满18周岁以上的公民</p>
+                    <p>
+                        需要武汉房产或车产抵押</p>
+                    <p>
+                        个人或企业银行征信记录良好</p>
+                    <p>
+                        无现有诉讼记录</p>
+                </div>
+            </div>
+            <div class="fl applyc2r">
+                <h3>提交资料</h3>
+                <div class="mt25">
+                    <p>身份证</p>
+                    <p>
+                        申请资料</p>
+                    <p>
+                        其他</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="applyc3">
+            <h3>整体流程</h3>
+            <ul class="clearfix">
+                <li class="rad">进件资料</li>
+                <li class="arrow"></li>
+                <li class="rad">面审沟通</li>
+                <li class="arrow"></li>
+                <li class="rad">风险分析</li>
+                <li class="arrow"></li>
+                <li class="rad">审批会签</li>
+                <li class="arrow"></li>
+                <li class="rad">合同签署</li>
+                <li class="arrow"></li>
+                <li class="rad">资金放款</li>
+            </ul>
+            <a href="borrow_apply_confirm">点击申请</a>
+        </div>
+
+        <div class="applyc4">
+            <h3>线下申请</h3>
+            <p>您可选择就近门店，上门申请</p>
+            <div class="nzx_fgs" id="nzx_fgs">
+                <table class=" mt20" style="border:1px solid #a3c8e3; width: 100%;">
+                    <tbody>
+                    <tr class="nzx_fgs_title" id="nzx_fgs_title">
+                        <th class="w250">分公司名称</th>
+                        <th class="w500">线下申请地址</th>
+                        <th class="w250">联系电话</th>
+                    </tr>
+                    <tr class="nzx_fgs_titlen">
+                        <td>武汉营业部</td>
+                        <td>湖北省武汉市武昌区中南路99号保利广场19楼</td>
+                        <td>027-87110969</td>
+                    </tr>
+                    <tr class="nzx_fgs_title">
+                        <td>贵阳分公司</td>
+                        <td>贵州省贵阳市南明区花果园国际金融街1号楼37楼16号</td>
+                        <td>0851-88610106</td>
+                    </tr>
+                    <tr class="nzx_fgs_titlen">
+                        <td>文山分公司</td>
+                        <td>云南省文山州东风路光大中心6楼</td>
+                        <td>0876-2139997</td>
+                    </tr>
+                    <tr class="nzx_fgs_title">
+                        <td>昆明分公司</td>
+                        <td>昆明市西山区云纺东南亚商城B座9003室</td>
+                        <td>0871-64173408</td>
+                    </tr>
+                    <tr class="nzx_fgs_titlen">
+                        <td>玉溪分公司</td>
+                        <td>云南省玉溪市红塔区南北大街汇溪大厦11楼</td>
+                        <td>0877-2688540；0877-2688541</td>
+                    </tr>
+                    <tr class="nzx_fgs_title">
+                        <td>西宁分公司</td>
+                        <td>青海省西宁市长江路128号创新大厦18楼</td>
+                        <td>0971-4513297</td>
+                    </tr>
+                    <tr class="nzx_fgs_titlen">
+                        <td>汉街营业部</td>
+                        <td>地址：武汉市武昌区汉街国际总部A座3003室</td>
+                        <td>027-59882888</td>
+                    </tr>
+                    <tr class="nzx_fgs_title">
+                        <td>汉口营业部</td>
+                        <td>地址：武汉市江岸区球场街江汉路250号船舶广场2904</td>
+                        <td>027-87110969</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script/foot.js"></script>
+</body>
+</html>

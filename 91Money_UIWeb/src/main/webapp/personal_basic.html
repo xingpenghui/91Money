@@ -1,0 +1,199 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>91Money平台</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/common.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/user.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/jquery.form.js"></script>
+    <script type="text/javascript" src="script/layer/layer.js" ></script>
+    <script type="text/javascript" src="script/common.js"></script>
+    <script type="text/javascript" src="script/user.js" ></script>
+</head>
+<body>
+<script src="script/head.js"></script>
+<!--个人中心-->
+<div class="wrapper wbgcolor">
+    <div class="w1200 personal">
+        <div class="credit-ad"><img src="images/clist1.jpg" width="1200" height="96"></div>
+
+        <script src="script/nav.js"></script>
+
+        <div class="personal-main">
+            <div class=" panel panel-default">
+                <div class="panel-heading">个人资料</div>
+                <div class="panel panel-body">
+
+                    <form id="userInfoForm" class="form-horizontal" action="personal_basic_save" method="post"
+                          style="width: 700px;">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                用户名
+                            </label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static">${logininfo.username}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                真实姓名
+                            </label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static">
+                                    <c:if test="${userinfo.isRealAuth}">
+                                        ${userinfo.realName}
+                                    </c:if>
+                                    <c:if test="${!userinfo.isRealAuth}">
+                                        未认证
+                                        <a href="realauth">[马上认证]</a>
+                                    </c:if>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                身份证号码
+                            </label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static">
+                                    <c:if test="${userinfo.isRealAuth}">
+                                        ${userinfo.idNumber}
+                                    </c:if>
+                                    <c:if test="${!userinfo.isRealAuth}">
+                                        未认证
+                                        <a href="realauth">[马上认证]</a>
+                                    </c:if>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                手机号码
+                            </label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static">${(userinfo.phoneNumber)}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                个人学历
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="educationBackground" name="educationBackground.id">
+                                    <c:forEach items="${educationBackgrounds}" var="item">
+                                        <option value="${item.id}"
+                                                <c:if test="${item.id == userinfo.educationBackground.id}">selected</c:if>>${item.title}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                月收入
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="incomeGrade" name="incomeGrade.id">
+                                    <c:forEach items="${incomeGrades}" var="item">
+                                        <option value="${item.id}"
+                                                <c:if test="${item.id == userinfo.incomeGrade.id}">selected</c:if>>${item.title}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                婚姻情况
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="marriage" name="marriage.id">
+                                    <c:forEach items="${marriages}" var="item">
+                                        <option value="${item.id}"
+                                                <c:if test="${item.id == userinfo.marriage.id}">selected</c:if>>${item.title}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                子女情况
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="kidCount" name="kidCount.id">
+                                    <c:forEach items="${kidCounts}" var="item">
+                                        <option value="${item.id}"
+                                                <c:if test="${item.id == userinfo.kidCount.id}">selected</c:if>>${item.title}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                住房条件
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="houseCondition" name="houseCondition.id">
+                                    <c:forEach items="${houseConditions}" var="item">
+                                        <option value="${item.id}"
+                                                <c:if test="${item.id == userinfo.houseCondition.id}">selected</c:if>>${item.title}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="submitBtn" type="button" class="btn btn-primary col-sm-offset-5"
+                                    data-loading-text="数据保存中" autocomplate="off">
+                                保存数据
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+<script src="script/foot.js"></script>
+
+
+<script>
+
+    $(function(){
+
+        $('#submitBtn').click(function(){
+
+            $('#userInfoForm').ajaxSubmit({
+                success: function (r) {
+                    if(r.code == 0){
+                        layer.alert(r.msg, function(index){
+                            //window.location.reload();
+                            //console.log('回调。。。。。');
+                            layer.close(index);
+                        });
+                        //console.log('不是回调。。。。。');
+                    }else{
+                        layer.alert(r.msg);
+                    }
+
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>

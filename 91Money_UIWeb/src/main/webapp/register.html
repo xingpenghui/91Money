@@ -1,0 +1,70 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>91Money平台</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href="css/common.css" rel="stylesheet"/>
+    <link href="css/register.css" rel="stylesheet" type="text/css">
+    <script src="script/jquery.min.js"></script>
+    <script src="script/jquery-validation-1.14.0/jquery.validate.js"></script>
+    <script src="script/jquery-validation-1.14.0/localization/messages_zh.js"></script>
+    <script src="script/jquery.form.js"></script>
+    <script src="script/layer/layer.js"></script>
+    <script src="script/common.js"></script>
+    <script src="script/register.js"></script>
+</head>
+<body>
+<script src="script/head.js"></script>
+<!--注册-->
+<div class="wrap">
+    <div class="tdbModule register">
+        <div class="registerTitle">注册账户</div>
+        <div class="registerLc1">
+            <p class="p1">填写账户信息</p>
+            <p class="p2">验证手机信息</p>
+            <p class="p3">注册成功</p>
+        </div>
+        <div class="registerCont">
+            <form action="doRegister.do" id="registerForm" method="post">
+
+                <ul>
+                    <li><span class="dis">用户名:</span>
+                        <input type="text" name="username" id="username" class="input _userName" maxlength="24"
+                               tabindex="1"></li>
+                    <li><span class="dis">密码:</span>
+                        <input type="password" name="password" id="password" class="input _password" maxlength="24"
+                               tabindex="1"></li>
+                    <li><span class="dis">确认密码:</span>
+                        <input type="password" name="repeatPassword" id="repeatPassword" class="input _repeatPassword"
+                               maxlength="24" tabindex="1"></li>
+
+                    <li class="telNumber"><span class="dis">手机号码:</span>
+                        <input type="text" class="input _phoneNum" id="phone" name="phone" tabindex="1" maxlength="11">
+                        <button type="button" class="button radius1 _getkey" id="sendPhone">获取验证码</button>
+                        <span id="phoneJy" data-info="请输入您的常用电话">请输入您的常用电话</span></li>
+                    <li class="telNumber"><span class="dis">短信验证码:</span>
+                        <input id="phonVerify" name="phonVerify" type="text" class="input input1  _phonVerify"
+                               data-_id="phonVerify" tabindex="1">
+                        <span class="info" id="phonVerifys" data-info="请输入手机验证码">请输入手机验证码</span></li>
+                    <li><span class="dis">推 荐 人:</span>
+                        <input type="text" class="input input1 _invist" name="uid">
+                        <span class="_invist_msg">请填写推荐人账户名，如无推荐人请留空</span></li>
+                    <li class="agree">
+                        <input name="protocol" id="protocol" type="checkbox" value="" checked="checked">
+                        我同意《<a href="#" target="_black">亿人宝注册协议</a>》 <span id="protocolAlt"
+                                                                           data-info="请查看协议">请查看协议</span></li>
+                    <li class="btn">
+                        <button class="radius1 _ajaxSubmit">下一步</button>
+                    </li>
+                </ul>
+
+            </form>
+        </div>
+    </div>
+</div>
+<!--网站底部-->
+<script src="script/foot.js"></script>
+</body>
+</html>
