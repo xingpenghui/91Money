@@ -18,5 +18,8 @@
         <module name="91Money_UIWeb" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="91Money_SSOProvider" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

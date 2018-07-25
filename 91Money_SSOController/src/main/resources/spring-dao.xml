@@ -36,7 +36,7 @@
 	<!--4、设置Mybatis的映射文件的信息 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 设置映射文件所在包 -->
-		<property name="basePackage" value="com.feri.dao"></property>
+		<property name="basePackage" value="com.qfedu.mapper.user"></property>
 	</bean>
 	
 </beans>

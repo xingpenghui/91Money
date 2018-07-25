@@ -18,7 +18,7 @@
 		base-package="com.qfedu.sso.controller"></context:component-scan>
 
 	
-	<mvc:annotation-driven  conversion-service="conversionService"></mvc:annotation-driven>
+	<mvc:annotation-driven></mvc:annotation-driven>
 	<!--放行静态资源 -->
 	<mvc:default-servlet-handler/>
 	

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('#registerForm').validate({
         debug:true,
         rules:{
@@ -31,18 +30,21 @@ $(document).ready(function() {
             }
         },
         submitHandler:function(form){
-            $(form).ajaxSubmit({
-                type: 'post',
-                dataType: 'json',
-                success: function(r){
-                    console.log(r);
-                    if(r.code == 0){
-                        window.location.href = 'register1';
-                    }else{
-                        layer.alert(r.msg);
-                    }
-                }
-            });
+            if($("#uid").val().length==0){
+                $("#uid").val(-1);
+            }
+            sub("registerForm","register1.html");
+            // $(form).ajaxSubmit({
+            //     type: 'post',
+            //     dataType: 'json',
+            //     success: function(r){
+            //         if(r.code == 0){
+            //             window.location.href = 'register1.html';
+            //         }else{
+            //             layer.msg(r.msg);
+            //         }
+            //     }
+            // });
         }
     });
 

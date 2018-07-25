@@ -27,7 +27,7 @@
             <p class="p3">注册成功</p>
         </div>
         <div class="registerCont">
-            <form action="doRegister.do" id="registerForm" method="post">
+            <form action="http://localhost:8081/user.do" id="registerForm" method="post">
 
                 <ul>
                     <li><span class="dis">用户名:</span>
@@ -45,15 +45,15 @@
                         <button type="button" class="button radius1 _getkey" id="sendPhone">获取验证码</button>
                         <span id="phoneJy" data-info="请输入您的常用电话">请输入您的常用电话</span></li>
                     <li class="telNumber"><span class="dis">短信验证码:</span>
-                        <input id="phonVerify" name="phonVerify" type="text" class="input input1  _phonVerify"
+                        <input id="phonVerify" type="text" class="input input1  _phonVerify"
                                data-_id="phonVerify" tabindex="1">
                         <span class="info" id="phonVerifys" data-info="请输入手机验证码">请输入手机验证码</span></li>
                     <li><span class="dis">推 荐 人:</span>
-                        <input type="text" class="input input1 _invist" name="uid">
-                        <span class="_invist_msg">请填写推荐人账户名，如无推荐人请留空</span></li>
+                        <input type="text" id="uid" class="input input1 _invist" name="uid">
+                        <span class="_invist_msg">请填写推荐人序号，如无推荐人请留空</span></li>
                     <li class="agree">
-                        <input name="protocol" id="protocol" type="checkbox" value="" checked="checked">
-                        我同意《<a href="#" target="_black">亿人宝注册协议</a>》 <span id="protocolAlt"
+                        <input id="protocol" type="checkbox" value="" checked="checked">
+                        我同意《<a href="#" target="_black">91Money注册协议</a>》 <span id="protocolAlt"
                                                                            data-info="请查看协议">请查看协议</span></li>
                     <li class="btn">
                         <button class="radius1 _ajaxSubmit">下一步</button>

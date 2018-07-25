@@ -289,4 +289,59 @@ function copyToClipboard(txt) {
 		alert("复制成功！");
 	}
 }
-
+//表单数据转换为json
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+//提交 表单  json
+function sub(fid,u) {
+	var f=$("#"+fid);
+	console.log(f);
+	console.log(f.attr("method"))
+	$.ajax({
+		url:f.attr("action"),
+		dataType:"json",
+		type:f.attr("method"),
+		data:f.serializeObject(),
+		success:function (obj) {
+			if(obj.code==0){
+				if(u.length>0){
+                    location.href=u;
+				}
+			}else{
+				layer.msg(obj.msg);
+			}
+        }
+	})
+}
+//提交 表单  键值对儿
+function subKV(fid,u) {
+    var f=$("#"+fid);
+    $.ajax({
+        url:f.attr("action"),
+        type:f.attr("method"),
+        data:f.serialize(),
+        success:function (obj) {
+            if(obj.code==0){
+                if(u.length>0){
+                    location.href=u;
+                }
+            }else{
+                layer.msg(obj.msg);
+            }
+        }
+    })
+}

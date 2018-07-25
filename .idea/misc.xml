@@ -2,15 +2,18 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/91Money_AdminWeb" />
     <file type="web" url="file://$PROJECT_DIR$/91Money_SSOController" />
     <file type="web" url="file://$PROJECT_DIR$/91Money_Study" />
-    <file type="web" url="file://$PROJECT_DIR$/91Money_UiController" />
+    <file type="web" url="file://$PROJECT_DIR$/91Money_UIController" />
     <file type="web" url="file://$PROJECT_DIR$/91Money_UIWeb" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/91Money_SSOProvider/pom.xml" />
+        <option value="$PROJECT_DIR$/91Money_SSOServiceProvider/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

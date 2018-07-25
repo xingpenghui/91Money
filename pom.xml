@@ -38,6 +38,7 @@
         <geoip2.version>2.12.0</geoip2.version>
         <shirospring.version>1.4.0</shirospring.version>
         <json.version>20180130</json.version>
+        <jedis.version>2.9.0</jedis.version>
     </properties>
     <!--限定版本号-->
     <dependencyManagement>
@@ -150,6 +151,12 @@
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
                 <version>${json.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
