@@ -110,6 +110,10 @@ public class JedisUtil {
         jedis.persist(key);
     }
 
+    //是否存在
+    public boolean isKey(String key){
+        return jedis.exists(key);
+    }
     public Set<String> keys(String p){
 
         return jedis.keys(p);

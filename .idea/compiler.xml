@@ -16,6 +16,8 @@
         <module name="91Money_Study" />
         <module name="91Money_UIController" />
         <module name="91Money_UIWeb" />
+        <module name="SSO_Sys1" />
+        <module name="SSO_Sys2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

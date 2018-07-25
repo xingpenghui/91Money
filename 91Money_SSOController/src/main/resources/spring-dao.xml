@@ -16,7 +16,7 @@
 	<!-- <mybatis:scan base-package="com.feri.dao"/> -->
 
 	<!--1、加载指定的配置文件 数据库的配置信息 -->
-	<context:property-placeholder location="classpath:dbconfig.properties" />
+	<context:property-placeholder location="classpath:*config.properties" />
 	<!--2、设置数据库连接池 -->
 	<bean id="dataSource"
 		  class="com.alibaba.druid.pool.DruidDataSource">

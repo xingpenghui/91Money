@@ -17,6 +17,8 @@
         <module>91Money_SSOServiceProvider</module>
         <module>91Money_AdminWeb</module>
         <module>91Money_Study</module>
+        <module>SSO_Sys1</module>
+        <module>SSO_Sys2</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OA主页</title>
+    <script src="jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="application/javascript">
+        var app1=new Vue({
+            el:"#dv1",
+            data:{
+                username:"未登录",
+                phone:"没有"
+            }
+        });
+        $(function () {
+            // var json=getData();
+            // if(json.length>0){
+            //     var js=decodeURI(json);
+            //     var obj=JSON.parse(js);
+            //     console.log(obj);
+            //     //令牌有效
+            //     app1.username=obj.username;
+            //     app1.phone=obj.phone;
+            //
+            // }else{
+                var token=getCK("userauth");
+                if(token.length==0){
+                    //没有令牌
+                    location.href="login.html";
+                }else{
+                    $.get("http://localhost:8080/usercheck.do",null,function (obj) {
+                        if(obj.code==0){
+                            //令牌有效
+                            app1.username=obj.username;
+                            app1.phone=obj.phone;
+                        }
+                    })
+                }
+            // }
+        })
+        //获取Cookie
+        function getCK(name) {
+            var cks1=document.cookie;
+            var arrc1=cks1.split(";");
+            for(i=0;i<arrc1.length;i++){
+                var ck1=arrc1[i];
+                var arrc2=ck1.split("=");
+                if(arrc2[0]==name){
+                    return arrc2[1];
+                }
+            }
+            return "";
+        }
+        //获取传递的参数信息
+        function getData() {
+            var url=window.location.search;
+            index=url.indexOf("?");
+            if(index>-1){
+                var str = url.substr(index+1);
+                if(str.indexOf('=')){
+                    return str.split('=')[1];
+                }
+            }
+            return "";
+        }
+    </script>
+</head>
+<body style="background-image: url('http://easyread.ph.126.net/eg1wAVL0STilzgSyUbIV2A==/7917035674826356049.jpg');background-repeat: no-repeat;background-position: inherit">
+<h1>欢迎：</h1>
+<div id="dv1">
+    <h1 >{{username}}</h1>
+    <h2>{{phone}}</h2>
+    <h3><a href="http://localhost:8080/userout.do">退出</a> </h3>
+</div>
+
+</body>
+</html>

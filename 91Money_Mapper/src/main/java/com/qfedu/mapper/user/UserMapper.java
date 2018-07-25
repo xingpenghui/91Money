@@ -18,5 +18,9 @@ public interface UserMapper {
     @Select("select id,username,password,phone,uid from t_user")
     @ResultType(User.class)
     List<User> queryPage(@Param("index") int index,@Param("count") int count);
+    //登录查询
+    @Select("select id,username,password,phone,uid from t_user where username=#{name} or phone=#{name}")
+    @ResultType(User.class)
+    User queryBy(String name);
 
 }
