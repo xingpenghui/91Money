@@ -345,3 +345,37 @@ function subKV(fid,u) {
         }
     })
 }
+//获取Cookie
+function getCK(name) {
+    var cks1=document.cookie;
+    console.log(cks1)
+    var arrc1=cks1.split(";");
+    for(i=0;i<arrc1.length;i++){
+        var ck1=arrc1[i];
+        var arrc2=ck1.split("=");
+        if(arrc2[0]==name){
+            return arrc2[1];
+        }
+    }
+    return "";
+}
+function checkLogin(id) {
+    var token=getCK("userauth");
+    if(token.length==0){
+        //没有令牌
+        location.href="login.html";
+    }else{
+        $.ajax({
+            url:"http://localhost:8081/usercheck.do",
+            method:"get",
+            xhrFields: {withCredentials: true},
+            success:function (obj) {
+                if(obj.code==0){
+                    $("#"+id).html(obj.data.username)
+                }else{
+                	location.href="login.html";
+				}
+            }
+        })
+    }
+}

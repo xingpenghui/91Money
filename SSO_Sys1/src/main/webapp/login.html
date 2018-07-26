@@ -4,30 +4,33 @@
     <meta charset="UTF-8">
     <title>OA登录</title>
     <script src="jquery.min.js"></script>
-    <script type="application/javascript">
-        function login() {
-            $.ajax({
-                url:$("#fm1").attr("action"),
-                method:$("#fm1").attr("method"),
-                data:$("#fm1").serialize(),
-                success:function (obj) {
-                    if(obj.code==0){
-                        location.href="index.html";
-                        //location.href="index.html?data="+encodeURI(JSON.stringify(obj.data));
-                    }else{
-                        alert("登录失败");
-                    }
-                }
-            })
-        }
-    </script>
+
 </head>
 <body>
-
-<form  id="fm1" action="http://localhost:8080/userlogin.do" method="post">
+<h1>OA系统</h1>
+<form  id="fm1" action="http://localhost:8081/userlogin.do" method="post">
     <input placeholder="用户名" name="name"><br/>
     <input placeholder="密码" name="password" type="password"><br/>
     <input type="button" onclick="login()" value="登录"><br/>
 </form>
+<script type="application/javascript">
+    function login() {
+        $.ajax({
+            url:$("#fm1").attr("action"),
+            method:$("#fm1").attr("method"),
+            xhrFields: {withCredentials: true},
+            data:$("#fm1").serialize(),
+            success:function (obj) {
+                if(obj.code==0){
+                    //alert(obj.msg);
+                    location.href="index.html";
+                    //location.href="index.html?data="+encodeURI(JSON.stringify(obj.data));
+                }else{
+                    alert("登录失败");
+                }
+            }
+        })
+    }
+</script>
 </body>
 </html>

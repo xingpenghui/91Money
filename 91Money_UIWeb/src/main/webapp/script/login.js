@@ -19,28 +19,22 @@ $(document).ready(function() {
             }
         },
         submitHandler:function(form){
-
             $(form).ajaxSubmit({
-                type: 'post',
-                dataType: 'json',
-                success: function(r){
-                    console.log(r);
-                    if(r.code == 0){
-                        window.location.href = 'index';
+                method:$("#fm1").attr("method"),
+                xhrFields: {withCredentials: true},
+                data:$("#fm1").serialize(),
+                success:function (obj) {
+                    if(obj.code==0){
+                        location.href="index.html";
                     }else{
-                        changeYzm();
-                        layer.alert(r.msg);
+                        alert("登录失败");
                     }
                 }
             });
         }
     });
-
 });
-
-
 function changeYzm(){
-    console.log('change==================');
     $('#yanzheng').attr('src', 'captcha.jpg?' + new Date());
 }
 

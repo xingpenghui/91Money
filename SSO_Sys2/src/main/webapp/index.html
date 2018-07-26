@@ -1,48 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-for="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>工单系统主页</title>
+    <title>CRM主页</title>
     <script src="jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="application/javascript">
-        var app1;
         $(function () {
-            app1=new Vue({
-                el:"#dv1",
-                data:{
-                    username:"未登录",
-                    phone:"没有"
-                }
-            });
-            // var json=getData();
-            // if(json.length>0){
-            //     var js=decodeURI(json);
-            //     var obj=JSON.parse(js);
-            //     console.log(obj);
-            //     //令牌有效
-            //     app1.username=obj.username;
-            //     app1.phone=obj.phone;
-            //
-            // }else{
                 var token=getCK("userauth");
                 if(token.length==0){
                     //没有令牌
+                    //alert("没有令牌");
                     location.href="login.html";
                 }else{
-                    $.get("http://localhost:8080/usercheck.do",null,function (obj) {
-                        if(obj.code==0){
-                            //令牌有效
-                            app1.username=obj.username;
-                            app1.phone=obj.phone;
+                    console.log(token);
+                    $.ajax({
+                        url:"http://localhost:8081/usercheck.do",
+                        method:"get",
+                        xhrFields: {withCredentials: true},
+                        success:function (obj) {
+                            console.log(obj);
+
+                            if(obj.code==0){
+                                $("h1").html(obj.data.username)
+                            }else{
+                                alert("获取登录用户："+obj.msg);
+                            }
                         }
                     })
                 }
             // }
+            loadData();
         })
         //获取Cookie
         function getCK(name) {
             var cks1=document.cookie;
+
             var arrc1=cks1.split(";");
             for(i=0;i<arrc1.length;i++){
                 var ck1=arrc1[i];
@@ -54,15 +47,34 @@
             return "";
         }
 
+        function loadData() {
+            $.get("http://localhost:8081/users.do",null,function (arr) {
+                console.log(arr)
+
+            })
+
+        }
+        function loginout() {
+            $.ajax({
+                url:"http://localhost:8081/userout.do",
+                method:"get",
+                xhrFields: {withCredentials: true},
+                success:function (obj) {
+                   alert("注销成功");
+                }
+            })
+        }
     </script>
 </head>
-<body style="background-image: url('https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1532506991&di=7fd1cb4eb157d4db0ffb00f2de24809f&src=http://tm-image.tianyancha.com/tm/c24f543e01ca19f087e7bc524eaa83eb.jpg');background-repeat: no-repeat;background-position: inherit">
+<body >
+<h1>CRM系统</h1>
 <h1>欢迎：</h1>
 <div id="dv1">
-    <h1 >{{username}}</h1>
-    <h2>{{phone}}</h2>
-    <h3><a href="http://localhost:8080/userout.do">退出</a> </h3>
+    <h1 id="h1"></h1>
+
+    <h3><a href="javascript:loginout();">退出</a> </h3>
 </div>
+
 
 </body>
 </html>

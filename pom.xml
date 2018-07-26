@@ -19,6 +19,8 @@
         <module>91Money_Study</module>
         <module>SSO_Sys1</module>
         <module>SSO_Sys2</module>
+        <module>91Money_Service</module>
+        <module>91Money_Provider</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -41,6 +43,9 @@
         <shirospring.version>1.4.0</shirospring.version>
         <json.version>20180130</json.version>
         <jedis.version>2.9.0</jedis.version>
+        <dubbo.version>2.6.2</dubbo.version>
+        <zk.version>3.4.13</zk.version>
+        <zkclient.version>0.10</zkclient.version>
     </properties>
     <!--限定版本号-->
     <dependencyManagement>
@@ -160,6 +165,28 @@
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.alibaba/dubbo -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+               <version>${zk.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
     <!--构建设置-->

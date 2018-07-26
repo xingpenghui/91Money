@@ -1,10 +1,12 @@
 package com.qfedu.core.vo;
 
+import java.io.Serializable;
+
 /**
  *@Author feri
  *@Date Created in 2018/7/24 14:37
  */
-public class R {
+public class R implements Serializable {
     private int code;
     private String msg;
     private Object data;

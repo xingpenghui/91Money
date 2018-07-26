@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -38,19 +37,31 @@ public class UserController {
 
     //登录
     @PostMapping("/userlogin")
-    public R login(String name, String password, HttpServletResponse response){
-            return service.ssoLogin(name,password,response);
+    public R login(String name, String password,HttpServletRequest request, HttpServletResponse response){
+        R r =service.ssoLogin(name,password);
+        if(r.getCode()==0){
+            CookieUtil.setCK(response,"userauth",r.getMsg());
+        }
+        return r;
     }
     //检查登录
     @GetMapping("/usercheck")
     public R checkLogin(HttpServletRequest request,HttpServletResponse response){
-        String tk=CookieUtil.getCk("userauth",request);
-        return service.ssoCheck(tk,response);
+        String tk=CookieUtil.getCk(request,"userauth");
+        R r= service.ssoCheck(tk);
+        if(r.getCode()!=0){
+            CookieUtil.delCK(response,"userauth");
+        }
+        return r;
     }
     //注销
     @GetMapping("/userout")
     public R loginout(HttpServletRequest request,HttpServletResponse response){
-        String tk=CookieUtil.getCk("userauth",request);
-        return service.loginOut(tk,response);
+        String tk=CookieUtil.getCk(request,"userauth");
+        R r= service.loginOut(tk);
+        if(r.getCode()==0){
+            CookieUtil.delCK(response,"userauth");
+        }
+        return r;
     }
 }

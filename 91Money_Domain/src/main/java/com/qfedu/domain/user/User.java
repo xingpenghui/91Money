@@ -1,10 +1,12 @@
 package com.qfedu.domain.user;
 
+import java.io.Serializable;
+
 /**
  *@Author feri
  *@Date Created in 2018/7/24 14:31
  */
-public class User {
+public class User  implements Serializable {
     private int id;
     private String username;
     private String password;

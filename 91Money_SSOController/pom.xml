@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.qfedu</groupId>
-            <artifactId>91Money_SSOServiceProvider</artifactId>
+            <artifactId>91Money_SSOService</artifactId>
             <version>1.0.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -22,6 +22,12 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>4.0.1</version>
         </dependency>
     </dependencies>
     <build>
