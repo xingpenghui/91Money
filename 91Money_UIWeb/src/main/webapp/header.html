@@ -12,57 +12,39 @@
             </ul>
             <script type="application/javascript">
                 function init() {
-                    var token=getCK("userauth");
-                    if(token.length==0){
-                        //没有令牌
-                        location.href="login.html";
-                    }else{
-                        $.ajax({
-                            url:"http://localhost:8081/usercheck.do",
-                            method:"get",
-                            xhrFields: {withCredentials: true},
-                            success:function (obj) {
-                                if(obj.code==0){
-                                   $("#register").hide();
-                                   $("#login").hide();
-                                   $("#infoaccount").show();
-                                   $("#exit").show();
-                                   $("#ainfo").html(obj.data.username);
-                                   $("#ql").hide();
-                                   $("#userinfo").show();
-                                }else{
-                                    $("#register").show();
-                                    $("#login").show();
-                                    $("#infoaccount").hide();
-                                    $("#exit").hide();
-                                    $("#ql").show();
-                                    $("#userinfo").hide();
-                                }
+                    var token = getCK("userauth");
+                    $.ajax({
+                        url: "http://localhost:8081/usercheck.do",
+                        method: "get",
+                        xhrFields: {withCredentials: true},
+                        success: function (obj) {
+                            if (obj.code == 0) {
+                                $(".u1").css("display", "block");
+                                $(".u2").css("display", "none");
+                                $("#ainfo").html(obj.data.username);
+                            } else {
+                                $(".u1").css("display", "none");
+                                $(".u2").css("display", "block");
                             }
-                        })
-                    }
+                        }
+                    })
                 }
-                init();
+               init();
             </script>
             <ul class="fn-right header-top-ul">
-                <li> <a href="index" class="app">返回首页</a> </li>
-                <!--<c:if test="${logininfo != null}">-->
-                    <li id="infoaccount">
-                        <div class=""><a href="account" class="c-orange" title="我的账号" id="ainfo"></a></div>
+                <li> <a href="index.html" class="app">返回首页</a> </li>
+                    <li class="u1">
+                        <div class=""><a href="account" class="c-orange" title="我的账号" id="ainfo">我的账号</a></div>
                     </li>
-                    <li id="exit">
-                        <div class=""><a href="logout" class="js-login" title="退出">退出</a></div>
+                    <li class="u1">
+                        <div ><a href="logout" class="js-login" title="注销">注销</a></div>
                     </li>
-                <!--</c:if>-->
-                <!--<c:if test="${logininfo == null}">-->
-                    <li id="register" >
-                        <div class=""><a href="register.html" class="c-orange" title="免费注册">免费注册</a></div>
+                    <li id="register" class="u2">
+                        <div ><a href="register.html" class="c-orange" title="免费注册">免费注册</a></div>
                     </li>
-                    <li id="login">
+                    <li id="login" class="u2">
                         <div class=""><a href="login.html" class="js-login" title="登录">登录</a></div>
                     </li>
-                <!--</c:if>-->
-
             </ul>
         </div>
     </div>
@@ -74,8 +56,8 @@
                 <li> <a href="list.html" class="">我要投资</a> </li>
                 <li> <a href="borrow" class="">我要借款</a> </li>
                 <li> <a href="msghelp.html">安全保障</a> </li>
-                <li  class="top-nav-safe"  id="ql"> <a href="login.html">快速登录</a> </li>
-                <li class="top-nav-safe" id="userinfo"> <a href="account">我的账户</a> </li>
+                <li  class="top-nav-safe u2" > <a href="login.html">快速登录</a> </li>
+                <li class="top-nav-safe u1"> <a href="account">我的账户</a> </li>
                 <li> <a href="company.html">关于我们</a> </li>
             </ul>
         </div>

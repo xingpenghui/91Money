@@ -359,23 +359,16 @@ function getCK(name) {
     }
     return "";
 }
-function checkLogin(id) {
-    var token=getCK("userauth");
-    if(token.length==0){
-        //没有令牌
-        location.href="login.html";
-    }else{
-        $.ajax({
-            url:"http://localhost:8081/usercheck.do",
-            method:"get",
-            xhrFields: {withCredentials: true},
-            success:function (obj) {
-                if(obj.code==0){
-                    $("#"+id).html(obj.data.username)
-                }else{
-                	location.href="login.html";
-				}
+
+function loginout() {
+    $.ajax({
+        url:"http://localhost:8081/userout.do",
+        method:"get",
+        xhrFields: {withCredentials: true},
+        success:function (obj) {
+            if(obj.code==0){
+                location.href="login.html";
             }
-        })
-    }
+        }
+    })
 }
