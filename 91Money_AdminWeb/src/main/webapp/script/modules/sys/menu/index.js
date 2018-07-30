@@ -2,11 +2,8 @@
  * 菜单管理-列表
  */
 var vm = new Vue({
-	
 	el: '#dtApp',
 	data:{
-		
-		
 	},
 	methods:{
 		loadTable: function(){
@@ -30,7 +27,6 @@ var vm = new Vue({
 		        {field:'url', title:'菜单URL'},
 		        {field:'perms', title:'授权标识'},
 		        {field:'type', title:'类型', formatter: function(value){
-		        	
 		        	switch (value) {
 					case 0:
 						return '<span class="label label-primary">目录</span>';
@@ -42,7 +38,6 @@ var vm = new Vue({
 						return '<span class="label label-warning">按钮</span>';
 						break;
 					}
-		        	
 		        }},
 		        {field:'orderNum', title:'排序号'},
 				{field:'menuId',title:'操作', formatter: function(value,row,index){
@@ -51,20 +46,11 @@ var vm = new Vue({
 					}
 				}
 			];
-			
 			var option = T.btTableOption;
 			var allColumns = option.columns.concat(columns);
 			option.columns = allColumns;
 			option.url='list';
 			option.pageSize = 100;
-			/*option.onPreBody = function(data){
-				if(data.length > 0){
-					var o = {rows: data};
-					FastJson.format(o);
-					
-					return o.rows;
-				}
-			}*/;
 			$('#table').bootstrapTable(option);
 		},
 		deleteBatch: function(){

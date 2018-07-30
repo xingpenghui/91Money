@@ -34,8 +34,8 @@
                 /libs/**=anon
                 /script/**=anon
                 /login.html=anon
-                /sysuserlogin.do=anon
-                /**=authc
+                /sysuserlogin=anon
+                /druid/**=anon
             </value>
         </property>
     </bean>

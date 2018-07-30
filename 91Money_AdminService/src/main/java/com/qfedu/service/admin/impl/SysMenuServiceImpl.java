@@ -1,6 +1,9 @@
 package com.qfedu.service.admin.impl;
 
+import com.qfedu.core.vo.DataGridResult;
+import com.qfedu.core.vo.Query;
 import com.qfedu.mapper.admin.SysMenuMapper;
+import com.qfedu.mapper.admin.SysRoleMenuMapper;
 import com.qfedu.mapper.admin.SysUserMapper;
 import com.qfedu.domain.admin.SysMenu;
 import com.qfedu.service.admin.SysMenuService;
@@ -16,143 +19,101 @@ import java.util.*;
  *@Date Created in 2018/7/29 23:36*/
 @Service
 public class SysMenuServiceImpl implements SysMenuService {
-
-	@Autowired
-	private SysMenuMapper sysMenuMapper;
-	/*@Autowired
-	private SysUserService sysUserService;*/
     @Autowired
-    private SysUserMapper sysUserMapper;
+    private SysMenuMapper menuMapper;
+
+    @Autowired
+    private SysRoleMenuMapper roleMenuMapper;
 
     @Override
-    public List<SysMenu> queryListAll() {
-        return sysMenuMapper.queryListAll();
+    public DataGridResult getPageList(Query query) {
+
+        Integer offset = (Integer)query.get("offset");
+        Integer limit = (Integer)query.get("limit");
+
+        //调用Dao查询分页列表数据
+        List<SysMenu> rows = menuMapper.queryByPage(offset, limit);
+        //调用Dao查询总记录数
+        Long total = (Long)menuMapper.queryCount();
+        //创建DataGridResult对象
+        DataGridResult dataGridResult = new DataGridResult(rows, total);
+        return dataGridResult;
     }
-
-//    @Override
-//	public DataGridResult getPageList(Query query) {
-//
-//		List<SysMenu> rows = sysMenuMapper.queryList(query);
-//		int total = sysMenuMapper.queryTotal(query);
-//
-//		//创建DataGridResult对象
-//		DataGridResult dataGridResult = new DataGridResult(rows, total);
-//		return dataGridResult;
-//	}
-
-	@Override
-    @Transactional(propagation = Propagation.REQUIRED)
-	public void deleteBatch(Long[] menuIds) {
-		sysMenuMapper.deleteBatch(menuIds);
-	}
 
     @Override
-    public List<SysMenu> queryNotButtonList() {
-        return sysMenuMapper.queryNotButtonList();
+    public void deleteBatch(Long[] menuIds) {
+        menuMapper.deleteBatch(menuIds);
+        roleMenuMapper.deleteByMenuIds(menuIds);
     }
-
-	@Override
-    @Transactional(propagation = Propagation.REQUIRED)
-	public void save(SysMenu menu) {
-		sysMenuMapper.insertSelective(menu);
-	}
 
     @Override
-    public SysMenu queryObject(Long menuId) {
-        return sysMenuMapper.selectByPrimaryKey(menuId);
+    public SysMenu getById(Long menuId) {
+        return menuMapper.selectByPrimaryKey(menuId);
     }
 
-	@Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void save(SysMenu menu) {
+        if(menu.getParentMenu() != null && menu.getParentMenu().getMenuId() == null ) {
+            menu.setParentMenu(null);
+        }
+        menuMapper.insert(menu);
+    }
+
+    @Override
     public void update(SysMenu menu) {
-		sysMenuMapper.updateByPrimaryKeySelective(menu);
-	}
-
-	@Override
-	public Set<String> getUserPermissions(long userId) {
-		List<String> permsList = null;
-		//超级用户（id=1的用户），拥有最高权限
-		if(userId == 1){
-			List<SysMenu> menuList = queryListAll();
-			permsList = new ArrayList<String>(menuList.size());
-			for(SysMenu menu : menuList){
-				permsList.add(menu.getPerms());
-			}
-		}else{
-			permsList = sysMenuMapper.queryAllPerms(userId);
-		}
-
-		//用户权限列表
-		Set<String> permsSet = new HashSet<String>();
-		for(String perms : permsList){
-			if(StringUtils.isEmpty(perms)){
-				continue;
-			}
-			permsSet.addAll(Arrays.asList(perms.trim().split(",")));
-		}
-		return permsSet;
-	}
+        menuMapper.updateByPrimaryKey(menu);
+    }
 
     @Override
-    public List<SysMenu> getUserMenuList(Long userId) {
+    public List<SysMenu> getNotButtonMenuList() {
+        return menuMapper.queryNotButtonList();
+    }
+
+    @Override
+    public List<SysMenu> findAll() {
+        return menuMapper.queryListAll();
+    }
+
+    @Override
+    public List<String> getUserPermsList(Long userId) {
+        List<String> userPermsList = menuMapper.queryAllPerms(userId);
+
+        List<String> finalPermsList = new ArrayList<String>();
+        for (int i = 0; i < userPermsList.size(); i++) {
+            String perms = userPermsList.get(i);
+            if(StringUtils.isEmpty(perms)) {
+                continue;
+            }
+            finalPermsList.addAll(Arrays.asList(perms.split(",")));
+        }
+
+        return finalPermsList;
+    }
+
+    @Override
+    public List<SysMenu> getTopMenuList() {
+        return menuMapper.queryTopMenuList();
+    }
+
+    @Override
+    public List<SysMenu> findUserMenuList(Long userId) {
+        List<SysMenu> menuList = new ArrayList<SysMenu>();
         //系统管理员，拥有最高权限
-        if(userId ==1){
-            return getAllMenuList(null);
-        }
-
+//        if(userId == 1){
+//            menuList = menuMapper.queryAllTop();
+//            for (int i = 0; i < menuList.size(); i++) {
+//                List<SysMenu> subMenu = menuMapper.queryListParentId(menuList.get(i).getMenuId());
+//                menuList.get(i).setChildren(subMenu);
+//            }
+//            return menuList;
+//        }
         //用户菜单列表
-        List<Long> menuIdList = sysMenuMapper.queryAllMenuId(userId);
-        return getAllMenuList(menuIdList);
-    }
-
-    /**
-     * 根据父菜单，查询当前用户可见的子菜单
-     * @param parentId 父菜单ID
-     * @param menuIdList  用户菜单ID列表
-     */
-    private List<SysMenu> queryListParentId(Long parentId, List<Long> menuIdList) {
-        //根据副菜单id获取子菜单列表
-        List<SysMenu> menuList = sysMenuMapper.queryListParentId(parentId);
-        if(menuIdList == null){
-            return menuList;
+        List<Long> menuIdList = menuMapper.queryAllMenuId(userId);
+        menuList = menuMapper.queryUserTop(menuIdList);
+        for (int i = 0; i < menuList.size(); i++) {
+            List<SysMenu> subMenu = menuMapper.queryUserMenuByParentId(menuList.get(i).getMenuId(), menuIdList);
+            menuList.get(i).setChildren(subMenu);
         }
-
-        //过滤出当前用户有权查看的子菜单列表
-        List<SysMenu> userMenuList = new ArrayList<>();
-        for(SysMenu menu : menuList){
-            if(menuIdList.contains(menu.getMenuId())){
-                userMenuList.add(menu);
-            }
-        }
-        return userMenuList;
-    }
-
-    /**
-     * 填充当前级别菜单列表的下一层菜单列表：递归形成树形结构
-     * @param menuList 当前用户可访问的菜单（当前级别）
-     * @param menuIdList 当前用户可访问的菜单id列表
-     * @return
-     */
-    private void getMenuTreeList(List<SysMenu> menuList, List<Long> menuIdList){
-        for(SysMenu entity : menuList){
-            if(entity.getType() == 0){//目录
-                //根据菜单id获取当前用户可见的子菜单列表
-                List<SysMenu> subMenuList = queryListParentId(entity.getMenuId(), menuIdList);
-                getMenuTreeList(subMenuList, menuIdList);
-                entity.setList(subMenuList);
-            }
-        }
-    }
-    /**
-     * 获取所有菜单列表
-     */
-    private List<SysMenu> getAllMenuList(List<Long> menuIdList){
-        //查询根菜单列表
-        List<SysMenu> menuList = queryListParentId(0L, menuIdList);
-        //递归获取子菜单
-        getMenuTreeList(menuList, menuIdList);
-
         return menuList;
     }
-
 }

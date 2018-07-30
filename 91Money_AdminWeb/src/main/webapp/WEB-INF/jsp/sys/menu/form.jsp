@@ -6,21 +6,16 @@
 <meta charset="UTF-8" />
 <title>91Money系统</title>
 <link rel="shortcut icon" href="images/logo.ico">
-
 <link href="${pageContext.request.contextPath}/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-   
 <!-- bootstrap table -->
 <link href="${pageContext.request.contextPath}/libs/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" >
 <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 <!-- ztree -->   
 <link rel="stylesheet" href="${pageContext.request.contextPath}/libs/zTree_v3/css/metroStyle/metroStyle.css" />
-
 <!-- 自定义css -->
 <link href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet">
-
-
 </head>
 <body class="my-content">
 

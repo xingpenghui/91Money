@@ -1,5 +1,7 @@
 package com.qfedu.service.admin;
 
+import com.qfedu.core.vo.DataGridResult;
+import com.qfedu.core.vo.Query;
 import com.qfedu.domain.admin.SysMenu;
 
 import java.util.List;
@@ -10,46 +12,24 @@ import java.util.Set;
  *@Date Created in 2018/7/29 23:39
  */
 public interface SysMenuService {
+    //分页业务方法
+    DataGridResult getPageList(Query query);
 
-    List<SysMenu> queryListAll();
+    void deleteBatch(Long[] ids);
 
-    //DataGridResult getPageList(Query query);
+    SysMenu getById(Long menuId);
 
-    /**
-     * 批量删除
-     * @param menuIds
-     */
-    void deleteBatch(Long[] menuIds);
-
-    /**
-     * 获取不包含按钮的菜单列表
-     */
-    List<SysMenu> queryNotButtonList();
-
-    /**
-     * 保存
-     * @param menu
-     */
     void save(SysMenu menu);
 
-    /**
-     * 查询菜单
-     */
-    SysMenu queryObject(Long menuId);
-
-    /**
-     * 更新
-     * @param menu
-     */
     void update(SysMenu menu);
 
-    /**
-     * 获取用户权限列表
-     */
-    Set<String> getUserPermissions(long userId);
+    List<SysMenu> getNotButtonMenuList();
 
-    /**
-     * 获取用户菜单列表
-     */
-    List<SysMenu> getUserMenuList(Long userId);
+    List<SysMenu> findAll();
+
+    List<String> getUserPermsList(Long userId);
+
+    List<SysMenu> getTopMenuList();
+
+    List<SysMenu> findUserMenuList(Long userId);
 }

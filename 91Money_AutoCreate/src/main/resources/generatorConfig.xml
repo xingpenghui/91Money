@@ -22,7 +22,7 @@
 		</javaTypeResolver>
 
 		<!-- targetProject:生成PO类的位置 -->
-		<javaModelGenerator targetPackage="com.qfedu.domain.user"
+		<javaModelGenerator targetPackage="com.qfedu.domain.admin"
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
@@ -30,14 +30,14 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- targetProject:mapper映射文件生成的位置 -->
-		<sqlMapGenerator targetPackage="com.qfedu.mapper.user"
+		<sqlMapGenerator targetPackage="com.qfedu.mapper.admin"
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		<!-- targetPackage：mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.qfedu.mapper.user" targetProject=".\src">
+			targetPackage="com.qfedu.mapper.admin" targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
@@ -45,6 +45,10 @@
 		<!--<table tableName="t_userdetail" domainObjectName="UserDetail"></table>-->
 		<!--<table tableName="t_loginlog" domainObjectName="LoginLog"></table>-->
 		<!--<table tableName="t_oplog" domainObjectName="OpLog"></table>-->
-		<table tableName="t_oss" domainObjectName="OSSPo" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
+		<table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
+		<table tableName="sys_menu" domainObjectName="SysMenu" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
+		<table tableName="sys_role" domainObjectName="SysRole" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
+		<table tableName="sys_user_role" domainObjectName="SysUserRole" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
+		<table tableName="sys_role_menu" domainObjectName="SysRoleMenu" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
 	</context>
 </generatorConfiguration>

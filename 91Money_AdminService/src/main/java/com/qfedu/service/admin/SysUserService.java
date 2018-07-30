@@ -1,5 +1,7 @@
 package com.qfedu.service.admin;
 
+import com.qfedu.core.vo.DataGridResult;
+import com.qfedu.core.vo.Query;
 import com.qfedu.domain.admin.SysUser;
 
 import java.util.List;
@@ -9,14 +11,16 @@ import java.util.List;
  *@Date Created in 2018/7/29 23:41
  */
 public interface SysUserService {
-    /**
-     * 根据用户名，查询系统用户
-     */
-    SysUser queryByUserName(String username);
+    //分页业务方法
+    DataGridResult getPageList(Query query);
 
-    /**
-     * 查询用户的所有权限
-     * @param userId  用户ID
-     */
-    List<String> queryAllPerms(Long userId);
+    void deleteBatch(Long[] ids);
+
+    SysUser getById(Long userId);
+
+    void save(SysUser user);
+
+    void update(SysUser user);
+
+    SysUser getByUsername(String username);
 }

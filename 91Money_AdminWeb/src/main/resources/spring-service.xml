@@ -15,6 +15,7 @@
 		http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop.xsd
 		">
+
 	<context:component-scan base-package="com.qfedu.service.admin.impl"></context:component-scan>
 	<!--5、配置事务 -->
 	<!--事务管理器 -->

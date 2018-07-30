@@ -8,7 +8,6 @@ var vm = new Vue({
 	},
 	methods: {
 		loadTable: function(){
-			
 			var columns = [
 				{ title: '角色ID', field: 'roleId'},
 				{ title: '角色名称', field: 'roleName'},

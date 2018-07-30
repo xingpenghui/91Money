@@ -58,7 +58,6 @@ var vm = new Vue({
             });
         },
         saveOrUpdate: function(){
-        	
         	//获取选择的菜单
 			var nodes = vm.ztree.getCheckedNodes(true);
 			var menuIdList = new Array();
@@ -66,11 +65,7 @@ var vm = new Vue({
 				menuIdList.push(nodes[i].menuId);
 			}
 			vm.role.menuIdList = menuIdList;
-			
-			//console.log(vm.role);
-			
         	var url = vm.role.roleId == null ? 'save' : 'update';
-        	
 			$.ajax({
 				type: 'POST',
 			    url: url,
@@ -102,5 +97,4 @@ var vm = new Vue({
 		}
     }
 });
-
 vm.init();

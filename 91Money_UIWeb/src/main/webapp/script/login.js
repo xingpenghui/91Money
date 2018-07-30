@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('#loginForm').validate({
         debug:true,
         rules:{
@@ -34,8 +33,5 @@ $(document).ready(function() {
         }
     });
 });
-function changeYzm(){
-    $('#yanzheng').attr('src', 'captcha.jpg?' + new Date());
-}
 
 

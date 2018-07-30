@@ -1,64 +1,59 @@
 package com.qfedu.controller;
 
-import com.qfedu.core.shiro.ShiroUtil;
 import com.qfedu.core.util.EncrypUtil;
 import com.qfedu.core.vo.R;
+import com.qfedu.service.admin.SysLogService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import java.io.IOException;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Map;
 
 /**
  *@Author feri
- *@Date Created in 2018/7/30 00:05
+ *@Date Created in 2018/7/30 14:26
  */
 @Controller
 public class SysLoginController {
-    /**
-     * 登录
-     */
+    @RequestMapping("/sys/login")
     @ResponseBody
-    @PostMapping("/sysuserlogin")
-    public R login(@RequestBody Map<String, String> map)throws IOException {
-        String username = map.get("username");
-        String password = map.get("password");
-        String rememberMe = map.get("rememberMe");
-        Boolean remember = false;
-        if(rememberMe != null) {
-            remember = true;
+    public R login(@RequestBody Map<String, String> userinfo) {
+        System.out.println("登陆："+userinfo);
+        String username = userinfo.get("username");
+        String password = userinfo.get("password");
+        String rememberMeStr = userinfo.get("rememberMe");
+        Boolean rememberMe = false;
+        if(rememberMeStr != null) {
+            rememberMe = true;
         }
-        try{
-            Subject subject = ShiroUtil.getSubject();
-            //加密用户输入的密码
+        try {
+            Subject subject = SecurityUtils.getSubject();
             password = EncrypUtil.md5Pass(password);
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-            token.setRememberMe(remember);
+            token.setRememberMe(rememberMe);
+            System.out.println("绘画："+subject.getSession());
+
             subject.login(token);
-        }catch (UnknownAccountException e) {
+        } catch (UnknownAccountException e) {
             return R.setError(e.getMessage());
         }catch (IncorrectCredentialsException e) {
             return R.setError(e.getMessage());
         }catch (LockedAccountException e) {
             return R.setError(e.getMessage());
         }catch (AuthenticationException e) {
-            return R.setError("账户验证失败");
+            return R.setError(e.getMessage());
         }
         return R.setOK("登录成功");
     }
 
-    /**
-     * 退出
-     */
-    @GetMapping("logout")
+    @RequestMapping("/logout")
     public String logout() {
-        ShiroUtil.logout();
+        SecurityUtils.getSubject().logout();
         return "redirect:login.html";
     }
+
 }

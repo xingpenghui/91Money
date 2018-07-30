@@ -1,5 +1,8 @@
 package com.qfedu.controller;
 
+import com.qfedu.core.shiro.ShiroUtil;
+import com.qfedu.core.vo.DataGridResult;
+import com.qfedu.core.vo.Query;
 import com.qfedu.core.vo.R;
 import com.qfedu.domain.admin.SysMenu;
 import com.qfedu.service.admin.SysMenuService;
@@ -18,90 +21,84 @@ import java.util.Set;
 @RestController
 @RequestMapping("/sys/menu")
 public class SysMenuController extends BaseController{
+
     @Autowired
     private SysMenuService sysMenuService;
 
-
-    @GetMapping("/listall")
-    public List<SysMenu> getAll(){
-        //查询列表数据
-        return sysMenuService.queryListAll();
+    @RequestMapping("/{page}")
+    public String index(@PathVariable String page) {
+        return "sys/menu/" +  page;
     }
 
-//    @GetMapping("/list")
-//    @RequiresPermissions(value={"sys:menu:list"})
-//    public DataGridResult getPage(@RequestParam Map<String, Object> params){
-//        //查询列表数据
-//        Query query = new Query(params);//进一步处理参数
-//        return sysMenuService.getPageList(query);
-//    }
-
-    @PostMapping("/del")
-    @RequiresPermissions(value={"sys:menu:delete"})
-    public R deleteBatch(@RequestBody Long[] menuIds) {
-        for(Long menuId : menuIds){
-            if(menuId.longValue() <= 31){
-                return R.setError("系统菜单，不能删除");
-            }
-        }
-        sysMenuService.deleteBatch(menuIds);
-        return R.setOK("删除成功");
+    @RequestMapping("/list")
+    @ResponseBody
+    @RequiresPermissions({"sys:menu:list"})
+    public DataGridResult getPage(@RequestParam Map<String, Object> params) {
+        Query query = new Query(params);
+        return sysMenuService.getPageList(query);
     }
 
-    /**
-     * 选择菜单(添加、修改菜单)
-     */
-    @GetMapping("/select")
-    @RequiresPermissions(value={"sys:menu:select"})
-    public R select(){
-        //查询列表数据
-        List<SysMenu> menuList = sysMenuService.queryNotButtonList();
-
-        //添加顶级菜单
-        SysMenu root = new SysMenu();
-        root.setMenuId(0L);
-        root.setName("一级菜单");
-        root.setParentId(-1L);
-        root.setOpen(true);
-        menuList.add(root);
-        return new R(0,"", menuList);
+    @RequestMapping("/delete")
+    @ResponseBody
+    @RequiresPermissions({"sys:menu:delete"})
+    public R deleteBatch(@RequestBody Long[] ids) {
+        sysMenuService.deleteBatch(ids);
+        return R.setOK("批量删除成功");
     }
 
-    @PostMapping("/save")
-    @RequiresPermissions(value={"sys:menu:save"})
-    public R save(@RequestBody SysMenu menu){
+    @RequestMapping("/save")
+    @ResponseBody
+    @RequiresPermissions({"sys:menu:save"})
+    public R save(@RequestBody SysMenu menu) {
         sysMenuService.save(menu);
         return R.setOK("新增成功");
     }
 
-    /**
-     * 菜单信息
-     */
-    @GetMapping("/info/{menuId}")
-    @RequiresPermissions(value={"sys:menu:info"})
-    public R info(@PathVariable("menuId") Long menuId){
-        SysMenu menu = sysMenuService.queryObject(menuId);
-//        return R.ok().put("menu", menu);
-        return new R(0,"",menu);
+    @RequestMapping("/info/{menuId}")
+    @ResponseBody
+    @RequiresPermissions({"sys:menu:info"})
+    public R save(@PathVariable Long menuId) {
+        SysMenu sysMenu = sysMenuService.getById(menuId);
+       // return R.ok().put("menu", sysMenu);
+        return new R(0,"菜单详情", sysMenu);
     }
 
-    @PostMapping("/update")
-    @RequiresPermissions(value={"sys:menu:update"})
-    public R update(@RequestBody SysMenu menu){
-
+    @RequestMapping("/update")
+    @ResponseBody
+    @RequiresPermissions({"sys:menu:update"})
+    public R update(@RequestBody SysMenu menu) {
         sysMenuService.update(menu);
-        return R.setOK("修改成功");
+        return R.setOK("更新成功");
+    }
+
+    @RequestMapping("/select")
+    @ResponseBody
+    @RequiresPermissions({"sys:menu:select"})
+    public R getPage() {
+        List<SysMenu> list = sysMenuService.getNotButtonMenuList();
+        //return R.ok().put("menuList", list);
+        return new R(0,"选择", list);
     }
 
     /**
-     * 用户菜单列表
+     * 角色授权菜单
      */
-    @GetMapping("/user")
-    public R user(){
-        Long userId = getUserId();
-        List<SysMenu> menuList = sysMenuService.getUserMenuList(userId);
-        Set<String> permissions = sysMenuService.getUserPermissions(userId);
-//        return R.setOK("").put("menuList", menuList).put("permissions", permissions);
-        return new R(0,"",menuList);
+    @RequestMapping("/select_all")
+    @RequiresPermissions({"sys:menu:perms"})
+    @ResponseBody
+    public R all(){
+        //查询列表数据
+        List<SysMenu> menuList = sysMenuService.findAll();
+       // return R.ok().put("menuList", menuList);
+        return new R(0,"授权列表", menuList);
+    }
+
+
+    @RequestMapping("/menu")
+    @ResponseBody
+    public R menu() {
+        List<SysMenu> menuList = sysMenuService.findUserMenuList(getUserId());
+        //return R.ok().put("menuList", menuList);
+        return new R(0,"菜单列表", menuList);
     }
 }

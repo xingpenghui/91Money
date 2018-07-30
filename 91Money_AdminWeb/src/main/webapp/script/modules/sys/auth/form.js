@@ -1,19 +1,14 @@
 /**
- * 用户管理
+ * 认证管理
  */
 var vm = new Vue({
     el:'#dtApp',
     data:{
         title: null,
-        user:{
-			status:1,
-			roleIdList:[]
-		},
-        roleList:{}
+        config: {}
     },
     methods: {
         init: function(){
-        	vm.getRoleList();
         	
             if(T.hasP('add')){
                 vm.add();
@@ -22,25 +17,22 @@ var vm = new Vue({
                 vm.edit();
             }
         },
-        add: function(){
-        	vm.title = '新增';
-        },
         edit: function(){
         	vm.title = '修改';
-			var userId = T.p('id');
-			if(userId == null){
+			var id = T.p('id');
+			if(id == null){
 				return;
 			}
-			$.get('info/'+userId, function(r){
-				vm.user = r.user;
+			$.get('info/'+id, function(r){
+				vm.config = r.config;
             });
         },
-        saveOrUpdate: function(){
-        	var url = vm.user.userId == null ? 'save' : 'update';
+        update: function(){
+        	var url = 'update';
 			$.ajax({
 				type: 'POST',
 			    url: url,
-			    data: JSON.stringify(vm.user),
+			    data: JSON.stringify(vm.config),
 			    success: function(r){
 			    	if(r.code === 0){
 			    		layer.alert('操作成功', function(index){
@@ -51,12 +43,8 @@ var vm = new Vue({
 					}
 				}
 			});
-        },
-        getRoleList: function(){
-			$.get("../../sys/role/select_all", function(r){
-				vm.roleList = r.roleList;
-			});
-		}
+        }
     }
 });
+
 vm.init();

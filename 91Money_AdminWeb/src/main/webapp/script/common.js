@@ -1,11 +1,9 @@
-
 //全局配置
 $.ajaxSetup({
 	dataType: "json",
 	contentType: "application/json",
 	cache: false
 });
-
 //工具对象
 window.T = {};
 
@@ -47,8 +45,7 @@ T.hasP = function(key) {
 	 return false;
 };
 //删除通用方法
-T.deleteMoreItem = function (id) {  
-	
+T.deleteMoreItem = function (id) {
 	 //返回所有选择的行，当没有选择的记录时，返回一个空数组  
    var rows = $('#table').bootstrapTable('getSelections');   
    if (rows.length == 0) {  
@@ -63,8 +60,7 @@ T.deleteMoreItem = function (id) {
        //遍历所有选择的行数据，取每条数据对应的ID  
        $.each(rows, function(i, row) { 
            ids[i] = row[id];
-       });  
-        
+       });
        $.ajax({ 
        	type: 'post',
            url : 'delete',
@@ -106,11 +102,9 @@ T.btTableOption = {
     	{checkbox:true}
     ],
     onPreBody: function(data){
-    	
     	if(data.length > 0){
 			var o = {rows: data};
 			FastJson.format(o);
-			
 			return o.rows;
 		}
     }};
@@ -118,8 +112,7 @@ T.btTableOption = {
 
 
 //任务调度通用方法
-T.doTask = function (id, url) {  
-	
+T.doTask = function (id, url) {
 	 //返回所有选择的行，当没有选择的记录时，返回一个空数组  
    var rows = $('#table').bootstrapTable('getSelections');   
    if (rows.length == 0) {  
