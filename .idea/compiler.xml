@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="91Money_AdminService" />
         <module name="91Money_AdminWeb" />
+        <module name="91Money_AutoCreate" />
         <module name="91Money_Core" />
         <module name="91Money_Domain" />
         <module name="91Money_Mapper" />

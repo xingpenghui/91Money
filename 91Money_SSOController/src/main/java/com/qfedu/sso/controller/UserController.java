@@ -4,6 +4,8 @@ import com.qfedu.core.util.CookieUtil;
 import com.qfedu.core.vo.R;
 import com.qfedu.domain.user.User;
 import com.qfedu.sso.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +23,15 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    //创建日志对象
+    private Logger logger=LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService service;
     //注册
     @PostMapping("/user")
-    public R save(User user){
+    public R save(User user)
+    {
+        logger.info("新增用户：",user);
         return service.save(user);
     }
 

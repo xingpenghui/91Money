@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>91Money系统</title>
+	<link rel="shortcut icon" href="images/logo.ico">
+
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+
+<div style="text-align: center">
+    <h1 class="logo-name">91Money</h1>
+</div>
+    <div id="dtApp" class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+
+            <h3>欢迎登录91Money系统</h3>
+			<div v-show="error.msg" class="alert alert-danger alert-dismissible">
+				<h4 class="m-b-none"><i class="fa fa-exclamation-triangle">{{error.msg}}</i></h4>
+			</div>
+            <form class="m-t">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="用户名" v-model="user.username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="密码" v-model="user.password">
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<input type="text" @keyup.enter="login" class="form-control" placeholder="验证码" v-model="user.kaptcha">-->
+                <!--</div>-->
+                <!--<div class="form-group text-left">-->
+                    <!--<img id="kaptcha" :src="kaptcha" alt="验证码" @click="refreshCode" style="cursor: pointer;" />-->
+                    <!--<a href="#" @click.prevent="refreshCode">点击刷新</a>-->
+                <!--</div>-->
+                <div class="checkbox text-left">
+			        <label>
+			          <input type="checkbox" name="autoLogin" v-model="user.rememberMe" value="true"> 记住我
+			        </label>
+			    </div>
+                <button type="button" class="btn btn-success block full-width m-b" @click="login">登 录</button>
+            </form>
+        </div>
+    </div>
+
+  	<!-- 全局js -->
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <!-- vue -->
+    <script src="libs/vue.min.js"></script>
+	<!-- 浮层 -->
+	<script src="libs/layer/layer.min.js"></script>
+	
+	<script>
+	
+	var vm = new Vue({
+		el: '#dtApp',
+		data: {
+			user: {},
+			error:{
+				msg:''
+			}
+			// kaptcha: 'kaptcha.jpg'
+		},
+		methods:{
+			// refreshCode: function(){
+			// 	$('#kaptcha').attr('src', vm.kaptcha);
+			// },
+			login: function(){
+				$.ajax({
+					url:'sysuserlogin.do',
+					type: 'post',
+					data: JSON.stringify(vm.user),
+					dataType: "json",
+					contentType: "application/json",
+					cache: false,
+					success: function(r){
+						if(r.code == 0){
+							window.location.href = 'index';
+						}else{
+							vm.error.msg = r.msg;
+							// vm.refreshCode();
+						}
+					}
+				});
+			}
+		}
+	});
+    </script>
+</body>
+</html>

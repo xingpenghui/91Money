@@ -1,10 +1,7 @@
 package com.qfedu.mapper.user;
 
 import com.qfedu.domain.user.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -14,6 +11,7 @@ import java.util.List;
  */
 public interface UserMapper {
     @Insert("insert into t_user(username,password,phone,uid) values(#{username},#{password},#{phone},#{uid})")
+    @Options(useGeneratedKeys = true,keyProperty ="id")
     int insert(User user);
     @Select("select id,username,password,phone,uid from t_user")
     @ResultType(User.class)

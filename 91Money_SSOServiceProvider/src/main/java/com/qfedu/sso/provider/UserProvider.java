@@ -8,6 +8,7 @@ import com.qfedu.core.util.ExecuteUtils;
 import com.qfedu.core.util.IdGenerator;
 import com.qfedu.core.vo.R;
 import com.qfedu.domain.user.User;
+import com.qfedu.mapper.user.UserDetailMapper;
 import com.qfedu.mapper.user.UserMapper;
 import com.qfedu.sso.service.UserService;
 import org.omg.CORBA.portable.IDLEntity;
@@ -31,12 +32,19 @@ public class UserProvider implements UserService {
     @Autowired
     private UserMapper mapper;
     @Autowired
+    private UserDetailMapper detailMapper;
+    @Autowired
     private IdGenerator idGenerator;
     @Autowired
     private JedisUtil jedisUtil;
     @Override
     public R save(User user) {
-        return ExecuteUtils.getR(mapper.insert(user),"新增用户");
+
+        R r= ExecuteUtils.getR(mapper.insert(user),"新增用户");
+        if(r.getCode()==0){
+            detailMapper.insert(user.getId());
+        }
+        return r;
     }
 
     @Override

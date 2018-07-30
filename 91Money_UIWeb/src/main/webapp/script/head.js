@@ -34,7 +34,7 @@ document.writeln("            </script>");
 document.writeln("            <ul class=\'fn-right header-top-ul\'>");
 document.writeln("                <li> <a href=\'index.html\' class=\'app\'>返回首页</a> </li>");
 document.writeln("                    <li class=\'u1\'>");
-document.writeln("                        <div class=\'\'><a href=\'account\' class=\'c-orange\' title=\'我的账号\' id=\'ainfo\'>我的账号</a></div>");
+document.writeln("                        <div class=\'\'><a href=\'javascript:account()\' class=\'c-orange\' title=\'我的账号\' id=\'ainfo\'>我的账号</a></div>");
 document.writeln("                    </li>");
 document.writeln("                    <li class=\'u1\'>");
 document.writeln("                        <div ><a href=\'javascript:loginout();\' class=\'js-login\' title=\'注销\'>注销</a></div>");

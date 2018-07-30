@@ -25,12 +25,9 @@
            border: #0fa24e 3px dashed;
            background-color: rgba(16, 253, 107, 0.16);
        }
-
        #uploader-demo1, #uploader-demo2{
            margin-bottom: 10px;
        }
-
-
    </style>
 </head>
 <body>
@@ -108,10 +105,8 @@
                                         <div id="fileList2" class="uploader-list"></div>
                                         <div id="filePicker2">上传身份证反面照片</div>
                                     </div>
-
-
-                                    <input type="hidden" name="image1" id="uploadImage1" />
-                                    <input type="hidden" name="image2" id="uploadImage2" />
+                                    <input type="hidden" name="idimage1" id="uploadImage1" />
+                                    <input type="hidden" name="idimage2" id="uploadImage2" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -119,24 +114,17 @@
                             </div>
                         </fieldset>
                     </form>
-
                 </div>
             </div>
         </div>
-
         <div class="clear"></div>
     </div>
 </div>
 
 <script src="script/foot.js"></script>
-
-
 <script>
-
     $(function(){
-
         $('#realAuthForm').ajaxForm(function(r){
-
             if(r.code == 0){
                 layer.alert(r.msg, function(){
                     window.location.reload();
@@ -145,8 +133,6 @@
                 layer.alert(r.msg);
             }
         });
-
-
         // 初始化Web Uploader
         var uploader1 = WebUploader.create(getOption('filePicker1'))
             .on( 'fileQueued', function( file ) {
@@ -175,7 +161,7 @@
             return {
                 auto: true,// 选完文件后，是否自动上传。
                 swf: 'script/webuploader-0.1.5/Uploader.swf',// swf文件路径
-                server: 'real_auth_upload',// 文件接收服务端。
+                server: 'http://localhost:9092/fileup.do',// 文件接收服务端。
                 fileNumLimit: 1,
                 pick: {
                     id:'#' + pickId,
@@ -213,7 +199,7 @@
         //成功后的页面处理
         function uploadSuccess( file, response, imageInputId ) {
             $( '#'+file.id ).addClass('upload-state-done');
-            $('#' + imageInputId).val(response.url);
+            $('#' + imageInputId).val(response.msg);
         }
 
         //提交前检查

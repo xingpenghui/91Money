@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ossUtil" class="com.qfedu.core.util.OSSUtil">
+        <constructor-arg name="endpoint" value="${oss.endpoint}"></constructor-arg>
+        <constructor-arg name="accessKeyId" value="${oss.accessKeyId}"></constructor-arg>
+        <constructor-arg name="accessKeySecret" value="${oss.accessKeySecret}"></constructor-arg>
+        <constructor-arg name="bucketName" value="${oss.bucketName}"></constructor-arg>
+    </bean>
+
+</beans>

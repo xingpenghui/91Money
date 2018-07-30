@@ -21,6 +21,8 @@
         <module>SSO_Sys2</module>
         <module>91Money_Service</module>
         <module>91Money_Provider</module>
+        <module>91Money_AutoCreate</module>
+        <module>91Money_AdminService</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -46,6 +48,8 @@
         <dubbo.version>2.6.2</dubbo.version>
         <zk.version>3.4.13</zk.version>
         <zkclient.version>0.10</zkclient.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <oss.version>2.8.3</oss.version>
     </properties>
     <!--限定版本号-->
     <dependencyManagement>
@@ -185,6 +189,19 @@
                 <artifactId>zkclient</artifactId>
                 <version>${zkclient.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${oss.version}</version>
+            </dependency>
+
 
 
         </dependencies>

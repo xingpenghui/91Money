@@ -11,5 +11,12 @@
 
     <artifactId>91Money_Service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.qfedu</groupId>
+            <artifactId>91Money_Domain</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

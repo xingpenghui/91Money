@@ -19,17 +19,10 @@ public interface UserService {
     List<User> query();
     //查询
     User queryBy(String name);
-
-    //登录和检查
-    //R ssoLogin(String token, String name, String password, HttpServletResponse response, HttpSession session);
-
     //单点登录之登录
     R ssoLogin(String name, String password);
-
     //单点登录之检查是否登录
     R ssoCheck(String token);
-
     //退出
     R loginOut(String token);
-
 }

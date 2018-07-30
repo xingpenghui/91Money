@@ -1,0 +1,37 @@
+html {
+    height: 100%;
+}
+
+body.login {
+    height: auto;
+    background: #1361A1 url(../images/login-bg1.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #333;
+    font-family: 微软雅黑, 黑体, Verdana, Arial, sans-serif;
+}
+.login-panel {
+    width: 550px;
+    margin: 10% auto 0;
+    padding: 30px 50px;
+    background: rgba(0,0,0,.3);
+    border-radius: 10px;
+    box-shadow: 0 0 2px 1px rgba(255,255,255,.3);
+}
+.login-panel h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-panel h2 img{
+    width: 450px;
+}
+.login-panel .has-feedback .form-control {
+    padding-left: 43px;
+    padding-right: 16px;
+}
+.login-panel .form-control-feedback{
+    right: auto;
+    left: 0;
+}

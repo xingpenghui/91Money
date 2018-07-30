@@ -372,3 +372,25 @@ function loginout() {
         }
     })
 }
+function ajax1(type,url,data,fn) {
+    $.ajax({
+        url:url,
+        method:type,
+		data:data,
+        xhrFields: {withCredentials: true},
+		success:fn
+    });
+}
+//我的账号
+function account() {
+	ajax1("get","http://localhost:9092/detailinit","",function (obj) {
+		var u;
+		switch(obj.code){
+			case 1001:u="real_auth.html";break;
+			case 1002:u="real_auth_auditing.html";break;
+			case 1003:u="real_auth_result.html";break;
+			case 1004:u="real_auth_error.html";break;
+		}
+        location.href=u;
+    })
+}

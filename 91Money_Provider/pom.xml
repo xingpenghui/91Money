@@ -9,6 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>91Money_Provider</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.qfedu</groupId>
+            <artifactId>91Money_Service</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qfedu</groupId>
+            <artifactId>91Money_Mapper</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
 </project>

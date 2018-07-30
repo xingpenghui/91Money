@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--spring 的配置 约束文件用到哪个引入哪个 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+ 		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!--扫描控制器类所在包 -->
+	<context:component-scan
+		base-package="com.qfedu.uicontroller"></context:component-scan>
+
+	<!--1、命名  消费者名称-->
+	<dubbo:application name="ssoconsumer"></dubbo:application>
+	<!--2、注册中心-->
+	<dubbo:registry address="10.8.155.38:2181" protocol="zookeeper" check="false"></dubbo:registry>
+	<!--3、获取服务接口-->
+	<dubbo:reference interface="com.qfedu.sso.service.UserService" id="userProvider" version="1.0"></dubbo:reference>
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+
+	<bean id="logAdvice"  class="com.qfedu.core.log.LogAdvice"></bean>
+
+	<aop:config >
+		<aop:pointcut id="pt" expression="execution(* com.qfedu.sso.controller.*.*(..))"></aop:pointcut>
+		<aop:aspect id="apt" ref="logAdvice">
+			<aop:around method="weriteLog" pointcut-ref="pt"></aop:around>
+		</aop:aspect>
+	</aop:config>
+
+	<!--放行静态资源 -->
+	<mvc:default-servlet-handler/>
+	
+</beans>
