@@ -31,7 +31,9 @@ public class UserDetailController {
     //初始化
     @GetMapping("detailinit")
     public R init(HttpServletRequest request){
-        return service.realNameAuth(Login.getU(jedisUtil,request).getId());
+        User user=Login.getU(jedisUtil,request);
+        System.out.println("---->"+user);
+        return service.realNameAuth(user.getId());
     }
     //修改
     @PostMapping("detailupdate")

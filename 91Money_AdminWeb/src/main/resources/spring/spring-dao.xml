@@ -12,11 +12,9 @@
 		http://mybatis.org/schema/mybatis-spring
 		http://www.mybatis.org/schema/mybatis-spring.xsd
 		">
-	<!--1、扫描Mybatis的注解 1.2.0之后新增 -->
-	<!-- <mybatis:scan base-package="com.feri.dao"/> -->
 
 	<!--1、加载指定的配置文件 数据库的配置信息 -->
-	<context:property-placeholder location="classpath:*config.properties" />
+	<context:property-placeholder location="classpath:config/*config.properties" />
 	<!--2、设置数据库连接池 -->
 	<bean id="dataSource"
 		  class="com.alibaba.druid.pool.DruidDataSource">
@@ -36,7 +34,7 @@
 	<!--4、设置Mybatis的映射文件的信息 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 设置映射文件所在包 -->
-		<property name="basePackage" value="com.qfedu.mapper.admin"></property>
+		<property name="basePackage" value="com.qfedu.mapper"></property>
 
 	</bean>
 	

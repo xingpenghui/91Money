@@ -45,6 +45,7 @@ public class UserController {
     @PostMapping("/userlogin")
     public R login(String name, String password,HttpServletRequest request, HttpServletResponse response){
         R r =service.ssoLogin(name,password);
+        System.out.println(r.getCode()+"-->"+r.getMsg());
         if(r.getCode()==0){
             CookieUtil.setCK(response,"userauth",r.getMsg());
         }

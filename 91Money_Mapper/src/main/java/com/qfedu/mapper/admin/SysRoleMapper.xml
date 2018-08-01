@@ -32,15 +32,15 @@
         where role_id = #{roleId,jdbcType=BIGINT}
     </update>
 
-    <select id="queryByPage" resultType="com.qfedu.domain.admin.SysRole">
-        select * from sys_role  order by role_id asc  limit #{offset}, #{limit}
+    <select id="queryByPage" resultMap="BaseResultMap">
+        select * from sys_role  order by role_id asc  limit #{index}, #{count}
     </select>
 
     <select id="queryCount" resultType="long">
         select count(*) from sys_role
     </select>
 
-    <select id="queryAll" resultType="com.qfedu.domain.admin.SysRole">
+    <select id="queryAll" resultMap="BaseResultMap">
         select * from sys_role
     </select>
 

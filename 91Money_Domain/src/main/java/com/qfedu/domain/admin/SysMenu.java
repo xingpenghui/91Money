@@ -124,4 +124,22 @@ public class SysMenu {
     public void setOrderNum(Integer orderNum) {
         this.orderNum = orderNum;
     }
+
+    @Override
+    public String toString() {
+        return "SysMenu{" +
+                "menuId=" + menuId +
+                ", parentId=" + parentId +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", perms='" + perms + '\'' +
+                ", type=" + type +
+                ", icon='" + icon + '\'' +
+                ", orderNum=" + orderNum +
+                ", list=" + list +
+                ", parentMenu=" + parentMenu +
+                ", children=" + children +
+                ", open=" + open +
+                '}';
+    }
 }

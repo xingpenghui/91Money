@@ -3,10 +3,12 @@ package com.qfedu.controller;
 import com.qfedu.core.vo.DataGridResult;
 import com.qfedu.core.vo.Query;
 import com.qfedu.core.vo.R;
+import com.qfedu.core.vo.RM;
 import com.qfedu.domain.admin.SysUser;
 import com.qfedu.service.admin.SysUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -15,7 +17,7 @@ import java.util.Map;
  *@Author feri
  *@Date Created in 2018/7/30 00:12
  */
-@RestController
+@Controller
 @RequestMapping("/sys/user")
 public class SysUserController extends BaseController{
     @Autowired
@@ -23,6 +25,7 @@ public class SysUserController extends BaseController{
 
     @RequestMapping("/{page}")
     public String listPage(@PathVariable String page){
+
         return "sys/user/"+page;
     }
 
@@ -49,10 +52,10 @@ public class SysUserController extends BaseController{
     @RequestMapping("/info/{userId}")
     @ResponseBody
     @RequiresPermissions({"sys:user:info"})
-    public R info(@PathVariable Long userId){
+    public RM info(@PathVariable Long userId){
         SysUser user = sysUserService.getById(userId);
-        //return R.ok().put("user", user);
-        return new R(0,"用户详情", user);
+        return RM.ok().put("user", user);
+        //return new R(0,"用户详情", user);
     }
 
     @RequestMapping("/save")

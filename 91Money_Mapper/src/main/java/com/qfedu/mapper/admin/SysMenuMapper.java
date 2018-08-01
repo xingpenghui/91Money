@@ -40,5 +40,5 @@ public interface SysMenuMapper {
      */
     List<Long> queryAllMenuId(Long userId);
     List<SysMenu> queryUserTop(List<Long> menuIdList);
-    List<SysMenu> queryUserMenuByParentId(Long menuId, List<Long> menuIdList);
+    List<SysMenu> queryUserMenuByParentId(@Param("mid")Long menuId, @Param("mlist") List<Long> menuIdList);
 }

@@ -16,7 +16,7 @@
     <select id="selectByPage" resultType="com.qfedu.domain.admin.SysConfig">
        SELECT * FROM sys_config limit #{index},#{size}
     </select>
-    <select id="selectCount">
+    <select id="selectCount" resultType="long">
       SELECT Count(*) FROM sys_config
     </select>
 

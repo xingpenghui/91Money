@@ -62,7 +62,9 @@ public class UserProvider implements UserService {
     public R ssoLogin(String name, String password) {
         //没有Token  第一次登录
         User user=mapper.queryBy(name);
+        System.out.println(user.getUsername()+"--->"+user.getPassword());
         if(user!=null){
+            System.out.println(password+"---->"+user.getPassword());
             if(Objects.equals(password,user.getPassword())) {
                 //登录成功
                 //生成唯一令牌

@@ -14,6 +14,12 @@
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <property name="globalSessionTimeout" value="3600"></property>
         <property name="sessionValidationSchedulerEnabled" value="true"></property>
+        <property name="sessionIdCookie" ref="simpleCookie"></property>
+    </bean>
+
+    <bean id="simpleCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg name="name" value="shiro.sesssion"/>
+        <property name="path" value="/"/>
     </bean>
     <!--4、创建安全管理对象-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -36,6 +42,7 @@
                 /login.html=anon
                 /sysuserlogin=anon
                 /druid/**=anon
+                /spider.html=anon
             </value>
         </property>
     </bean>

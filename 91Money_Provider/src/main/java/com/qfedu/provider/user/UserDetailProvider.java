@@ -51,6 +51,7 @@ public class UserDetailProvider implements UserDetailService {
     @Override
     public R realNameAuth(int uid) {
         UserDetail detail=mapper.selectByUid(uid);
+        System.out.println(detail.getRealname()+"--->"+detail.getUid());
         R r=null;
         switch (detail.getFlag()){
             case 0://初始化 需要认证

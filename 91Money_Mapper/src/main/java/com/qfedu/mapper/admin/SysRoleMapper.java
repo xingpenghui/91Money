@@ -2,6 +2,7 @@ package com.qfedu.mapper.admin;
 
 import com.qfedu.core.vo.Query;
 import com.qfedu.domain.admin.SysRole;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface SysRoleMapper {
     int insert(SysRole record);
     SysRole selectByPrimaryKey(Long roleId);
     int updateByPrimaryKey(SysRole record);
-    List<SysRole> queryByPage(int index,int count);
+    List<SysRole> queryByPage(@Param("index") int index, @Param("count") int count);
     Long queryCount();
     List<SysRole> queryAll();
     List<String> selectRoleNameList(Long userId);

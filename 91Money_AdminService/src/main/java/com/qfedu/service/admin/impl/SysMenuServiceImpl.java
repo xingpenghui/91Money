@@ -77,7 +77,6 @@ public class SysMenuServiceImpl implements SysMenuService {
     @Override
     public List<String> getUserPermsList(Long userId) {
         List<String> userPermsList = menuMapper.queryAllPerms(userId);
-
         List<String> finalPermsList = new ArrayList<String>();
         for (int i = 0; i < userPermsList.size(); i++) {
             String perms = userPermsList.get(i);
@@ -86,7 +85,7 @@ public class SysMenuServiceImpl implements SysMenuService {
             }
             finalPermsList.addAll(Arrays.asList(perms.split(",")));
         }
-
+        System.out.println("权限："+finalPermsList);
         return finalPermsList;
     }
 
@@ -99,14 +98,16 @@ public class SysMenuServiceImpl implements SysMenuService {
     public List<SysMenu> findUserMenuList(Long userId) {
         List<SysMenu> menuList = new ArrayList<SysMenu>();
         //系统管理员，拥有最高权限
-//        if(userId == 1){
-//            menuList = menuMapper.queryAllTop();
-//            for (int i = 0; i < menuList.size(); i++) {
-//                List<SysMenu> subMenu = menuMapper.queryListParentId(menuList.get(i).getMenuId());
-//                menuList.get(i).setChildren(subMenu);
-//            }
-//            return menuList;
-//        }
+        if(userId == 1){
+            menuList = menuMapper.queryAllTop();
+            System.err.println("菜单："+menuList);
+            for (int i = 0; i < menuList.size(); i++) {
+                List<SysMenu> subMenu = menuMapper.queryListParentId(menuList.get(i).getMenuId());
+                System.err.println("菜单子祥："+menuList);
+                menuList.get(i).setChildren(subMenu);
+            }
+            return menuList;
+        }
         //用户菜单列表
         List<Long> menuIdList = menuMapper.queryAllMenuId(userId);
         menuList = menuMapper.queryUserTop(menuIdList);

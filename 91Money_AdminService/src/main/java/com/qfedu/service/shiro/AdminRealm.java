@@ -41,7 +41,7 @@ public class AdminRealm extends AuthorizingRealm {
         info.addRoles(roleList);
         List<String> permissions = sysMenuService.getUserPermsList(userId);
         for (String perm : permissions) {
-            System.out.println(perm);
+            System.err.println("授权："+perm);
         }
         //分配资源权限
         info.addStringPermissions(permissions);
@@ -52,14 +52,13 @@ public class AdminRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         //获取输入的用户名和密码
-//        String username= (String) authenticationToken.getPrincipal();
-//        String password=(String) authenticationToken.getCredentials();
         UsernamePasswordToken token=(UsernamePasswordToken)authenticationToken;
         String username= token.getUsername();
         String password=new String(token.getPassword());
-        System.out.println("用户登录信息："+username+"--->"+password);
+        System.err.println("用户登录信息："+username+"--->"+password);
         //获取数据库的用户信息
         SysUser user=sysUserService.getByUsername(username);
+        System.out.println("用户："+user);
         if(user==null){
             //用户名不存在
             throw new UnknownAccountException("用户不存在");
@@ -67,10 +66,8 @@ public class AdminRealm extends AuthorizingRealm {
             throw new IncorrectCredentialsException("密码不正确");
         }else {
             SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(user,password,getName());
-           // ShiroUtil.getSubject("sysuser",user);
-            System.out.println("绘画："+ShiroUtil.getSession());
-            ShiroUtil.getSubject().getSession().setAttribute("sysuser",user);
 
+            ShiroUtil.getSubject().getSession().setAttribute("sysuser",user);
             return info;
         }
     }

@@ -2,8 +2,8 @@ package com.qfedu.domain.admin;
 
 
 /**
- * 系统配置信息
- * 
+ *@Author feri
+ *@Date Created in 2018/7/29 23:32
  */
 public class SysConfig {
 	private Long id;

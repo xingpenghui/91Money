@@ -4,10 +4,12 @@ import com.qfedu.core.shiro.ShiroUtil;
 import com.qfedu.core.vo.DataGridResult;
 import com.qfedu.core.vo.Query;
 import com.qfedu.core.vo.R;
+import com.qfedu.core.vo.RM;
 import com.qfedu.domain.admin.SysMenu;
 import com.qfedu.service.admin.SysMenuService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +20,7 @@ import java.util.Set;
  *@Author feri
  *@Date Created in 2018/7/30 00:08
  */
-@RestController
+@Controller
 @RequestMapping("/sys/menu")
 public class SysMenuController extends BaseController{
 
@@ -57,10 +59,10 @@ public class SysMenuController extends BaseController{
     @RequestMapping("/info/{menuId}")
     @ResponseBody
     @RequiresPermissions({"sys:menu:info"})
-    public R save(@PathVariable Long menuId) {
+    public RM save(@PathVariable Long menuId) {
         SysMenu sysMenu = sysMenuService.getById(menuId);
-       // return R.ok().put("menu", sysMenu);
-        return new R(0,"菜单详情", sysMenu);
+        return RM.ok().put("menu", sysMenu);
+       // return new R(0,"菜单详情", sysMenu);
     }
 
     @RequestMapping("/update")
@@ -74,10 +76,10 @@ public class SysMenuController extends BaseController{
     @RequestMapping("/select")
     @ResponseBody
     @RequiresPermissions({"sys:menu:select"})
-    public R getPage() {
+    public RM getPage() {
         List<SysMenu> list = sysMenuService.getNotButtonMenuList();
-        //return R.ok().put("menuList", list);
-        return new R(0,"选择", list);
+        return RM.ok().put("menuList", list);
+        //return new R(0,"选择", list);
     }
 
     /**
@@ -86,19 +88,20 @@ public class SysMenuController extends BaseController{
     @RequestMapping("/select_all")
     @RequiresPermissions({"sys:menu:perms"})
     @ResponseBody
-    public R all(){
+    public RM all(){
         //查询列表数据
         List<SysMenu> menuList = sysMenuService.findAll();
-       // return R.ok().put("menuList", menuList);
-        return new R(0,"授权列表", menuList);
+        return RM.ok().put("menuList", menuList);
+       // return new R(0,"授权列表", menuList);
     }
 
 
     @RequestMapping("/menu")
     @ResponseBody
-    public R menu() {
+    public RM menu() {
+        System.out.println("id----"+getUserId());
         List<SysMenu> menuList = sysMenuService.findUserMenuList(getUserId());
-        //return R.ok().put("menuList", menuList);
-        return new R(0,"菜单列表", menuList);
+        return RM.ok().put("menuList", menuList);
+        //return new R(0,"菜单列表", menuList);
     }
 }

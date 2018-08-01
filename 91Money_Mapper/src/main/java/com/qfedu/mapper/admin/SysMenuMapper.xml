@@ -36,13 +36,12 @@
         where menu_id = #{menuId,jdbcType=BIGINT}
     </update>
 
-    <select id="queryListAll" resultType="com.qfedu.domain.admin.SysMenu">
+    <select id="queryListAll" resultMap="rm">
     select m.*,(select p.name from sys_menu p where p.menu_id = m.parent_id) as parentName
-    from sys_menu m
-    order by m.order_num asc
+    from sys_menu m order by m.order_num asc
   </select>
-    <select id="queryByPage" resultType="com.qfedu.domain.admin.SysMenu">
-    select * from sys_menu limit #{index},#{count} order by order_num asc
+    <select id="queryByPage" resultMap="rm">
+    select * from sys_menu  order by order_num asc limit #{index},#{count}
   </select>
     <select id="queryCount" resultType="long" >
     select COUNT(*) from sys_menu
@@ -58,30 +57,37 @@
             #{menuId}
         </foreach>
     </delete>
-    <select id="queryNotButtonList" resultType="com.qfedu.domain.admin.SysMenu">
+    <select id="queryNotButtonList" resultMap="rm">
         select * from sys_menu where type != 2 order by order_num asc
     </select>
-    <select id="queryTopMenuList" resultType="com.qfedu.domain.admin.SysMenu">
-        select * from sys_menu where type != 2 and parent_id=1 order by order_num asc
+    <select id="queryTopMenuList" resultMap="rm">
+        select * from sys_menu where parent_id= null order by orderNum asc
     </select>
-    <select id="queryAllTop" resultType="com.qfedu.domain.admin.SysMenu">
-        select * from sys_menu where type != 2 and parent_id=1 order by order_num asc
+    <select id="queryAllTop" resultMap="rm">
+       select * from sys_menu where parent_id is null order by order_num
     </select>
-    <select id="queryUserTop" resultType="com.qfedu.domain.admin.SysMenu">
-        select * from sys_menu where type != 2 and parent_id=1 order by order_num asc
+    <select id="queryUserTop" resultMap="rm" parameterType="java.util.List">
+        select * from sys_menu where parent_id is null and menu_id in
+         <foreach collection="list" open="(" close=")" separator="," item="mid">
+             #{mid}
+         </foreach>
+         order by order_num
     </select>
-    <select id="queryUserMenuByParentId" resultType="com.qfedu.domain.admin.SysMenu">
-        select * from sys_menu where type != 2 and parent_id=1 order by order_num asc
+    <select id="queryUserMenuByParentId" resultMap="rm">
+        select * from sys_menu where parent_id = #{mid} and menu_id in
+         <foreach collection="mlist" item="id" open="(" close=")" separator=",">
+             #{id}
+         </foreach>
+         order by order_num
     </select>
-    <select id="queryListParentId" resultType="com.qfedu.domain.admin.SysMenu">
-        select * from sys_menu where parent_id = #{parentId} order by order_num asc
+    <select id="queryListParentId" resultMap="rm">
+        select * from sys_menu where parent_id = #{parentId} order by order_num
     </select>
     <!-- 查询用户的所有权限 -->
     <select id="queryAllPerms" resultType="String">
-        SELECT m.perms FROM sys_menu m
-        LEFT JOIN sys_role_menu rm ON m.menu_id = rm.menu_id
-        LEFT JOIN sys_user_role ur ON ur.role_id = rm.role_id
-        WHERE ur.user_id = #{userId}
+           SELECT m.perms  FROM sys_menu m  LEFT JOIN sys_role_menu rm
+         ON m.menu_id = rm.menu_id  LEFT JOIN sys_user_role ur
+          ON ur.role_id = rm.role_id  WHERE ur.user_id = #{userId}
     </select>
 
     <!-- 查询用户的所有菜单ID -->

@@ -13,7 +13,6 @@ public interface SysConfigMapper {
 	SysConfig selectById(Long id);
 	List<SysConfig> selectByPage(@Param("index") int limit, @Param("size") int size);
 	Long selectCount();
-
 	int deleteBatch(Long[]ids);
 	int update(SysConfig config);
 }

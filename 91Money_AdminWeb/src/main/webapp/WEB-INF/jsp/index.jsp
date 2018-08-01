@@ -10,14 +10,10 @@
     <meta charset="UTF-8">
     <title>91Money后台系统</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo.ico">
-
     <link href="${pageContext.request.contextPath}/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
-    
     <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-	
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 	<div id="wrapper" v-cloak>
@@ -31,7 +27,8 @@
                         <div class="dropdown profile-element">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                                <span class="block m-t-xs"><strong class="font-bold"><shiro:principal property="username" /></strong></span>
+                                <span class="block m-t-xs"><strong class="font-bold">
+                                    <shiro:principal property="username" /></strong></span>
                                	<span class="text-muted text-xs block">角色<b class="caret"></b></span>
                                 </span>
                             </a>
@@ -49,50 +46,6 @@
                     <li>
                         <a class="J_menuItem" href="home" data-index="0"><i class="fa fa-home"></i> <span class="nav-label">主页</span></a>
                     </li>
-                    <!-- <li>
-                        <a href="#">
-                            <i class="fa fa-automobile"></i>
-                            <span class="nav-label">定时任务</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                        	<li>
-                                <a class="J_menuItem" href="schedule/job/index">任务管理</a>
-                            </li>
-                        	<li>
-                                <a class="J_menuItem" href="schedule/joblog/index">任务日志</a>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <li>-->
-                        <!--<a href="#">
-                            <i class="fa fa-automobile"></i>
-                            <span class="nav-label">系统配置</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                        	<li>
-                                <a class="J_menuItem" href="sys/user/index">用户管理</a>
-                            </li>
-                        	<li>
-                                <a class="J_menuItem" href="sys/role/index">角色管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="sys/menu/index">菜单管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="sys/config/index">参数管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="druid/index.html">SQL监控</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="sys/log/index">系统日志</a>
-                            </li>
-                        </ul>
-
-                    </li>-->
                     <menu-item v-for="item in menuList" v-bind:item="item"></menu-item>
                 </ul>
             </div>
@@ -255,17 +208,13 @@
         </div>
 		<!--右侧边栏结束-->
 	</div>
-	
 	<!-- 全局js -->
     <script src="${pageContext.request.contextPath}/libs/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/libs/bootstrap/js/bootstrap.min.js"></script>
-    
     <!-- vue -->
     <script src="${pageContext.request.contextPath}/libs/vue.min.js"></script>
-    
     <!-- fastjson -->
     <script src="${pageContext.request.contextPath}/libs/FastJson-1.0.min.js"></script>
-    
 	<!--导航-->
 	<script src="${pageContext.request.contextPath}/libs/metisMenu/jquery.metisMenu.js"></script>
     <!--滚动条-->
@@ -277,7 +226,6 @@
 	<!-- 自定义js -->
     <script src="${pageContext.request.contextPath}/script/hplus.js"></script>
     <script src="${pageContext.request.contextPath}/script/contabs.js"></script>
-    
     <script src="${pageContext.request.contextPath}/script/modules/index.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.qfedu.domain.admin;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,9 +8,9 @@ import java.util.List;
  *@Author feri
  *@Date Created in 2018/7/29 23:32
  */
-public class SysUser {
-    private Long userId;
+public class SysUser implements Serializable {
 
+    private Long userId;
     private String username;
 
     private String password;
@@ -95,5 +96,20 @@ public class SysUser {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", status=" + status +
+                ", createUserId=" + createUserId +
+                ", createTime=" + createTime +
+                ", roleIdList=" + roleIdList +
+                '}';
     }
 }

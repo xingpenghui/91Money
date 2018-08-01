@@ -1,34 +1,20 @@
-
 $(function () {
-
     //通过遍历给菜单项加上data-index属性
     $(".J_menuItem").each(function (index) {
         if (!$(this).attr('data-index')) {
             $(this).attr('data-index', index);
         }
     });
-
     $('.J_menuItem').on('click', menuItem);
-
-
     $('.J_menuTabs').on('click', '.J_menuTab i', closeTab);
-
     $('.J_tabCloseOther').on('click', closeOtherTabs);
-
     $('.J_tabShowActive').on('click', showActiveTab);
-
-
     $('.J_menuTabs').on('click', '.J_menuTab', activeTab);
-
-
     $('.J_menuTabs').on('dblclick', '.J_menuTab', refreshTab);
-
     // 左移按扭
     $('.J_tabLeft').on('click', scrollTabLeft);
-
     // 右移按扭
     $('.J_tabRight').on('click', scrollTabRight);
-
     // 关闭全部
     $('.J_tabCloseAll').on('click', function () {
         $('.page-tabs-content').children("[data-id]").not(":first").each(function () {
@@ -41,11 +27,7 @@ $(function () {
         });
         $('.page-tabs-content').css("margin-left", "0");
     });
-
 });
-
-
-
 //关闭其他选项卡
 function closeOtherTabs(){
     $('.page-tabs-content').children("[data-id]").not(":first").not(".active").each(function () {
@@ -73,19 +55,11 @@ function activeTab() {
         scrollToTab(this);
     }
 }
-
 //刷新iframe
 function refreshTab() {
     var target = $('.J_iframe[data-id="' + $(this).data('id') + '"]');
     var url = target.attr('src');
-//    //显示loading提示
-//    var loading = layer.load();
-//    target.attr('src', url).load(function () {
-//        //关闭loading提示
-//        layer.close(loading);
-//    });
 }
-
 //计算元素集合的总宽度
 function calSumWidth(elements) {
     var width = 0;
@@ -183,8 +157,6 @@ function scrollTabRight() {
         }
     }
 }
-
-
 function menuItem() {
     // 获取标识数据
     var dataUrl = $(this).attr('href'),
@@ -314,4 +286,3 @@ function closeTab() {
     }
     return false;
 }
-

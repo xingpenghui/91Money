@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class Login {
     public static User getU(JedisUtil jedisUtil, HttpServletRequest request){
         String json=jedisUtil.getStr(CookieUtil.getCk(request,"userauth"));
+        System.out.println("json---->"+json);
         return JSON.parseObject(json,User.class);
     }
 }

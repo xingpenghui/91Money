@@ -22,7 +22,6 @@ public class SysLoginController {
     @RequestMapping("/sys/login")
     @ResponseBody
     public R login(@RequestBody Map<String, String> userinfo) {
-        System.out.println("登陆："+userinfo);
         String username = userinfo.get("username");
         String password = userinfo.get("password");
         String rememberMeStr = userinfo.get("rememberMe");
@@ -35,8 +34,6 @@ public class SysLoginController {
             password = EncrypUtil.md5Pass(password);
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             token.setRememberMe(rememberMe);
-            System.out.println("绘画："+subject.getSession());
-
             subject.login(token);
         } catch (UnknownAccountException e) {
             return R.setError(e.getMessage());

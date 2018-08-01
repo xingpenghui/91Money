@@ -3,6 +3,7 @@ package com.qfedu.controller;
 import com.qfedu.core.vo.DataGridResult;
 import com.qfedu.core.vo.Query;
 import com.qfedu.core.vo.R;
+import com.qfedu.core.vo.RM;
 import com.qfedu.domain.admin.SysConfig;
 import com.qfedu.service.admin.SysConfigService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -53,10 +54,10 @@ public class SysConfigController {
     @RequestMapping("/info/{id}")
     @ResponseBody
     @RequiresPermissions({"sys:config:info"})
-    public R save(@PathVariable Long id) {
+    public RM save(@PathVariable Long id) {
         SysConfig sysConfig = sysConfigService.getById(id);
-       // return R.ok().put("config", sysConfig);
-        return new R(0,"",sysConfig);
+       return RM.ok().put("config", sysConfig);
+        //return new R(0,"",sysConfig);
     }
 
     @RequestMapping("/update")

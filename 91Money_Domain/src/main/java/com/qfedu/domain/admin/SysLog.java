@@ -5,8 +5,8 @@ import java.util.Date;
 
 
 /**
- * 系统日志
- * 
+ *@Author feri
+ *@Date Created in 2018/7/29 23:32
  */
 public class SysLog implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -17,15 +17,14 @@
 	<context:component-scan
 		base-package="com.qfedu.sso.controller"></context:component-scan>
 
-	<!--1、命名  消费者名称-->
-	<dubbo:application name="ssoconsumer"></dubbo:application>
-	<!--2、注册中心-->
-	<dubbo:registry address="10.8.155.38:2181" protocol="zookeeper" check="false"></dubbo:registry>
-	<!--3、获取服务接口-->
-	<dubbo:reference interface="com.qfedu.sso.service.UserService" id="userProvider" version="1.0"></dubbo:reference>
-	<mvc:annotation-driven></mvc:annotation-driven>
-
-
+	<!--&lt;!&ndash;1、命名  消费者名称&ndash;&gt;-->
+	<!--<dubbo:application name="ssoconsumer"></dubbo:application>-->
+	<!--&lt;!&ndash;2、注册中心&ndash;&gt;-->
+	<!--<dubbo:registry address="10.8.155.38:2181" protocol="zookeeper" check="false"></dubbo:registry>-->
+	<!--&lt;!&ndash;3、获取服务接口&ndash;&gt;-->
+	<!--<dubbo:reference interface="com.qfedu.sso.service.UserService" id="userProvider" version="1.0"></dubbo:reference>-->
+	<!--<mvc:annotation-driven></mvc:annotation-driven>-->
+	<!---->
 	<bean id="logAdvice"  class="com.qfedu.core.log.LogAdvice"></bean>
 
 	<aop:config >
@@ -35,6 +34,7 @@
 		</aop:aspect>
 	</aop:config>
 
+	<mvc:annotation-driven></mvc:annotation-driven>
 	<!--放行静态资源 -->
 	<mvc:default-servlet-handler/>
 	

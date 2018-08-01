@@ -383,7 +383,7 @@ function ajax1(type,url,data,fn) {
 }
 //我的账号
 function account() {
-	ajax1("get","http://localhost:9092/detailinit","",function (obj) {
+	ajax1("get","http://localhost:9092/detailinit.do","",function (obj) {
 		var u;
 		switch(obj.code){
 			case 1001:u="real_auth.html";break;

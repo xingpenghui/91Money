@@ -3,6 +3,7 @@ package com.qfedu.controller;
 import com.qfedu.core.vo.DataGridResult;
 import com.qfedu.core.vo.Query;
 import com.qfedu.core.vo.R;
+import com.qfedu.core.vo.RM;
 import com.qfedu.domain.admin.SysRole;
 import com.qfedu.service.admin.SysRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -49,10 +50,10 @@ public class SysRoleController {
     @RequestMapping("/info/{roleId}")
     @ResponseBody
     @RequiresPermissions({"sys:role:info"})
-    public R info(@PathVariable Long roleId){
+    public RM info(@PathVariable Long roleId){
         SysRole role = sysRoleService.getById(roleId);
-       // return R.ok().put("role", role);
-        return new R(0,"角色详情", role);
+        return RM.ok().put("role", role);
+        //return new R(0,"角色详情", role);
     }
 
     @RequestMapping("/save")
@@ -77,9 +78,9 @@ public class SysRoleController {
     @RequiresPermissions({"sys:role:select"})
     @RequestMapping("/select_all")
     @ResponseBody
-    public R select(){
+    public RM select(){
         List<SysRole> roleList = sysRoleService.findAll();
-       // return R.ok().put("roleList", roleList);
-        return new R(0,"角色列表", roleList);
+        return RM.ok().put("roleList", roleList);
+       // return new R(0,"角色列表", roleList);
     }
 }
