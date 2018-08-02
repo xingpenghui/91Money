@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--spring 的配置 约束文件用到哪个引入哪个 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		">
+	<bean id="ftlUtil" class="com.qfedu.core.ftl.FtlUtil">
+		<constructor-arg name="dir" value="${ftldir}"></constructor-arg>
+	</bean>
+
+</beans>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -32,12 +33,13 @@ public class UserDetailController {
     @GetMapping("detailinit")
     public R init(HttpServletRequest request){
         User user=Login.getU(jedisUtil,request);
-        System.out.println("---->"+user);
         return service.realNameAuth(user.getId());
     }
     //修改
     @PostMapping("detailupdate")
-    public R update(UserDetail detail){
+    public R update(UserDetail detail,HttpServletRequest request){
+        User user=Login.getU(jedisUtil,request);
+        detail.setUid(user.getId());
         return service.update(detail);
     }
     //查询

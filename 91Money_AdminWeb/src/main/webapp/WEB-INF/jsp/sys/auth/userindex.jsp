@@ -42,6 +42,6 @@
 	<!-- 全局js设置 -->
 	<script src="${pageContext.request.contextPath}/script/common.js"></script>
 	<!-- 模块 -->
-	<script src="${pageContext.request.contextPath}/script/modules/sys/config/index.js"></script>
+	<script src="${pageContext.request.contextPath}/script/modules/sys/auth/index.js"></script>
 </body>
 </html>

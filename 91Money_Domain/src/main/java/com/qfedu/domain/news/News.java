@@ -87,6 +87,9 @@ public class News {
     }
 
     public void setRefHtml(String refHtml) {
+        if(refHtml==null){
+            refHtml="<h1>暂无关联</h1>";
+        }
         this.refHtml = refHtml;
     }
 
@@ -98,6 +101,8 @@ public class News {
                 ", lastTime='" + lastTime + '\'' +
                 ", sourcename='" + sourcename + '\'' +
                 ", sourceurl='" + sourceurl + '\'' +
+                ", contentHtml='" + contentHtml + '\'' +
+                ", refHtml='" + refHtml + '\'' +
                 ", createTime=" + createTime +
                 ", flag=" + flag +
                 '}';

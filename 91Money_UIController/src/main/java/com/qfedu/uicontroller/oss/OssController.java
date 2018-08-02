@@ -8,6 +8,7 @@ import com.qfedu.service.user.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import java.io.ByteArrayOutputStream;
@@ -26,7 +27,7 @@ public class OssController {
     private UserDetailService service;
     //文件上传
     @PostMapping("/fileup")
-    public R fileup(CommonsMultipartFile file){
+    public R fileup(@RequestParam("feri") CommonsMultipartFile file){
         String fn=FileUtils.createFileName(file.getOriginalFilename());
         String url=ossUtil.fileUp(fn,file.getBytes());
         OSSPo po=new OSSPo();

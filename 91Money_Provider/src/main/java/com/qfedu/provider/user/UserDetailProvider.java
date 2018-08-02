@@ -35,6 +35,7 @@ public class UserDetailProvider implements UserDetailService {
 
     @Override
     public R update(UserDetail detail) {
+        System.err.println("ud--->"+detail);
         return ExecuteUtils.getR(mapper.updateById(detail),"个人实名认证完成");
     }
 
@@ -51,6 +52,7 @@ public class UserDetailProvider implements UserDetailService {
     @Override
     public R realNameAuth(int uid) {
         UserDetail detail=mapper.selectByUid(uid);
+        System.out.println("ud---->"+detail+"----->"+uid);
         System.out.println(detail.getRealname()+"--->"+detail.getUid());
         R r=null;
         switch (detail.getFlag()){

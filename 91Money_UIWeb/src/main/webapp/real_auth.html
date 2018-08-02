@@ -44,7 +44,7 @@
                 <div class="panel-heading">实名认证</div>
                 <div class="panel panel-body">
 
-                    <form class="form-horizontal" id="realAuthForm" method="post" action="real_auth_save" novalidate="novalidate">
+                    <form class="form-horizontal" id="realAuthForm" method="post" action="http://localhost:9092/detailupdate.do" novalidate="novalidate">
                         <fieldset>
                             <div class="form-group">
                                 <p class="text-center text-danger">为保护您账户安全，实名认证成功之后不能修改信息，请认真填写！</p>
@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label ">用户名</label>
                                 <div class="col-sm-4">
-                                    <p class="form-control-static">${logininfo.username }</p>
+                                    <p class="form-control-static">{{username }}</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="submit" class="btn btn-primary col-sm-offset-4" ><i class="icon-ok"></i> 提交认证</button>
+                                <button type="button"  onclick="updateDetail()" class="btn btn-primary col-sm-offset-4" ><i class="icon-ok"></i> 提交认证</button>
                             </div>
                         </fieldset>
                     </form>
@@ -163,6 +163,7 @@
                 swf: 'script/webuploader-0.1.5/Uploader.swf',// swf文件路径
                 server: 'http://localhost:9092/fileup.do',// 文件接收服务端。
                 fileNumLimit: 1,
+                fileVal:'feri',
                 pick: {
                     id:'#' + pickId,
                     multiple: false
@@ -209,6 +210,18 @@
             }
         }
     })
+    //保存
+    function updateDetail() {
+        var fm=$("#realAuthForm");
+        ajax1(fm.attr("method"),fm.attr("action"),fm.serialize(),function (obj) {
+            if(obj.code==0){
+                location.href="real_auth_auditing.html";
+            }else{
+                layer.msg(obj.msg);
+            }
+
+        })
+    }
 </script>
 </body>
 </html>
