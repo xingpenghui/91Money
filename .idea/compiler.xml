@@ -12,6 +12,7 @@
         <module name="91Money_Core" />
         <module name="91Money_Domain" />
         <module name="91Money_Mapper" />
+        <module name="91Money_MoneyController" />
         <module name="91Money_Provider" />
         <module name="91Money_Service" />
         <module name="91Money_SSOController" />

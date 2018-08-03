@@ -23,6 +23,7 @@
         <module>91Money_Provider</module>
         <module>91Money_AutoCreate</module>
         <module>91Money_AdminService</module>
+        <module>91Money_MoneyController</module>
     </modules>
     <packaging>pom</packaging>
 

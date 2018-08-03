@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/91Money_AdminWeb" />
+    <file type="web" url="file://$PROJECT_DIR$/91Money_MoneyController" />
     <file type="web" url="file://$PROJECT_DIR$/91Money_Provider" />
     <file type="web" url="file://$PROJECT_DIR$/91Money_SSOController" />
     <file type="web" url="file://$PROJECT_DIR$/91Money_SSOServiceProvider" />

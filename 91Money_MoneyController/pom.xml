@@ -8,20 +8,24 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>91Money_Provider</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>91Money_MoneyController</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/javax.jms/javax.jms-api -->
         <dependency>
-            <groupId>com.qfedu</groupId>
-            <artifactId>91Money_Service</artifactId>
-            <version>1.0.0</version>
+            <groupId>javax.jms</groupId>
+            <artifactId>javax.jms-api</artifactId>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.qfedu</groupId>
-            <artifactId>91Money_Mapper</artifactId>
+            <artifactId>91Money_Core</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+
+
     </dependencies>
 
     <build>
@@ -31,7 +35,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <port>10002</port>
+                    <port>8087</port>
                     <path>/</path>
                     <uriEncoding>UTF-8</uriEncoding>
                     <server>tomcat7</server>

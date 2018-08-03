@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发送消息</title>
+</head>
+<body>
+<div>
+    <h1>基于MQ发送消息</h1>
+    <hr/>
+    <form action="sendmsg.do" >
+        <label>选择类型：</label><select name="type">
+        <option value="1">Queue</option>
+        <option value="2">Topic</option>
+    </select><br/>
+        <label>输入内容：</label>
+        <textarea name="msg" rows="6" cols="30"></textarea>
+        <br/>
+        <input type="submit" value="发送消息">
+    </form>
+</div>
+</body>
+</html>
