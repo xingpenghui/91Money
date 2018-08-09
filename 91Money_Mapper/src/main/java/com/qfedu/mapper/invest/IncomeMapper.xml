@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.mapper.loan.IncomeMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.domain.loan.Income">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="invertid" jdbcType="INTEGER" property="invertid" />
+    <result column="expectmoney" jdbcType="INTEGER" property="expectmoney" />
+    <result column="overduemoney" jdbcType="INTEGER" property="overduemoney" />
+    <result column="createdate" jdbcType="DATE" property="createdate" />
+    <result column="startdate" jdbcType="DATE" property="startdate" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="enddate" jdbcType="DATE" property="enddate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, invertid, expectmoney, overduemoney, createdate, startdate, flag, enddate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_income
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="com.qfedu.domain.loan.Income">
+    insert into t_income (invertid, expectmoney,
+      overduemoney, createdate, startdate, 
+      flag, enddate)
+    values (#{invertid,jdbcType=INTEGER}, #{expectmoney,jdbcType=INTEGER},
+      0, now(), null ,  0, null )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.domain.loan.Income">
+    update t_income
+    set invertid = #{invertid,jdbcType=INTEGER},
+      expectmoney = #{expectmoney,jdbcType=INTEGER},
+      overduemoney = #{overduemoney,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=DATE},
+      startdate = #{startdate,jdbcType=DATE},
+      flag = #{flag,jdbcType=INTEGER},
+      enddate = #{enddate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

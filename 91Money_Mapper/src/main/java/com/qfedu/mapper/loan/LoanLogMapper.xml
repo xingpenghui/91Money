@@ -7,76 +7,12 @@
     <result column="suid" jdbcType="INTEGER" property="suid" />
     <result column="msg" jdbcType="VARCHAR" property="msg" />
   </resultMap>
-  <sql id="Base_Column_List">
-    id, type, suid, msg
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_loanlog
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_loanlog
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+
+
   <insert id="insert" parameterType="com.qfedu.domain.loan.LoanLog">
-    insert into t_loanlog( type, suid,
-      msg)
+    insert into t_loanlog( type, suid, msg,createtime)
     values ( #{type,jdbcType=INTEGER}, #{suid,jdbcType=INTEGER},
-      #{msg,jdbcType=VARCHAR})
+      #{msg,jdbcType=VARCHAR},now())
   </insert>
-  <insert id="insertSelective" parameterType="com.qfedu.domain.loan.LoanLog">
-    insert into t_loanlog
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="suid != null">
-        suid,
-      </if>
-      <if test="msg != null">
-        msg,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="suid != null">
-        #{suid,jdbcType=INTEGER},
-      </if>
-      <if test="msg != null">
-        #{msg,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.domain.loan.LoanLog">
-    update t_loanlog
-    <set>
-      <if test="type != null">
-        type = #{type,jdbcType=INTEGER},
-      </if>
-      <if test="suid != null">
-        suid = #{suid,jdbcType=INTEGER},
-      </if>
-      <if test="msg != null">
-        msg = #{msg,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.qfedu.domain.loan.LoanLog">
-    update t_loanlog
-    set type = #{type,jdbcType=INTEGER},
-      suid = #{suid,jdbcType=INTEGER},
-      msg = #{msg,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
 </mapper>

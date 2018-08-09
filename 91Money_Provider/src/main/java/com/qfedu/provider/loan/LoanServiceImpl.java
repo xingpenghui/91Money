@@ -8,6 +8,8 @@ import com.qfedu.service.loan.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *@Author feri
  *@Date Created in 2018/8/3 14:30
@@ -25,5 +27,15 @@ public class LoanServiceImpl implements LoanService {
         loan.setRate(loan.getRate()/100);
 //        3/2
         return ExecuteUtils.getR(mapper.insert(loan),"新增借款");
+    }
+
+    @Override
+    public List<Loan> queryAll() {
+        return mapper.selectAll();
+    }
+
+    @Override
+    public List<Loan> queryAll(int type) {
+        return mapper.selectByType(type);
     }
 }

@@ -1,19 +1,15 @@
 package com.qfedu.mapper.loan;
 
 import com.qfedu.domain.loan.Loan;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface LoanMapper {
-    int deleteByPrimaryKey(Integer id);
-
     int insert(Loan record);
+    Loan selectById(Integer id);
+    int updateFlag(@Param("id")int id,@Param("flag")int flag);
+    List<Loan> selectAll();
+    List<Loan> selectByType(int type);
 
-    int insertSelective(Loan record);
-
-    Loan selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Loan record);
-
-    int updateByPrimaryKeyWithBLOBs(Loan record);
-
-    int updateByPrimaryKey(Loan record);
 }

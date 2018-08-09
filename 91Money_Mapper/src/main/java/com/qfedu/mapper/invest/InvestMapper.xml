@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.mapper.loan.InvestMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.domain.loan.Invest">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="lid" jdbcType="INTEGER" property="lid" />
+    <result column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, money, lid, aid, createtime, flag
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from "t_invest"
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="com.qfedu.domain.loan.Invest">
+    insert into "t_invest" (id, money, lid, 
+      aid, createtime, flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, #{lid,jdbcType=INTEGER}, 
+      #{aid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}
+      )
+  </insert>
+
+  <update id="updateFlag" parameterType="com.qfedu.domain.loan.Invest">
+    update "t_invest"
+    set money = #{money,jdbcType=INTEGER},
+      lid = #{lid,jdbcType=INTEGER},
+      aid = #{aid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
