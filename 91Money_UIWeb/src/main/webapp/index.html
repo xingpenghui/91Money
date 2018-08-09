@@ -7,6 +7,8 @@
 <meta name="description" content="" />
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/index.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
 <script type="text/javascript" src="script/jquery.min.js"></script>
 <script type="text/javascript" src="script/common.js"></script>
 <style>
@@ -44,8 +46,12 @@ $(document).ready(function() {
         myar = setInterval('AutoScroll("#scrollDiv")', 3000)
     }); //当鼠标放上去的时候，滚动停止，鼠标离开的时候滚动开始
 });
-
-
+//查询ES
+function searchData(obj) {
+    $.get("http://localhost:8089/newesquery.do","title="+obj.value,function (arr) {
+        layer.msg(arr.length);
+    })
+}
 </script>
 </head>
 <body>
@@ -133,7 +139,14 @@ $(function(){
       </ul>
     </div>
   </div>
-  <a class="more" href="#">更多</a> </div>
+    <div>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..." onkeydown="searchData(this)">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button">搜索</button>
+      </span>
+        </div>
+    </div>
 <div class="ipubs"><span class="o1">累计投资金额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">已还本息:<strong>400,507,750.81</strong>元</span><span class="o2">余额:<strong>677,679,983.07</strong>元</span><span class="o4">注册人数:<strong>20649</strong>人</span></div>
 <div class="feature"> <a class="fea1" href="#"> <i></i>
   <h3>高收益</h3>
@@ -215,7 +228,7 @@ $(function(){
           <div class="borrow-list">
             <ul>
               <li>
-                <div class="title"><a href="#" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a href="infor.html" class="f18" title="毕先生宝马320汽车质押贷款10万元" target="_blank">毕先生宝马320汽车质押贷款10万元</a></div>
+                <div class="title"><a href="#" target="_blank"><i class="icon icon-che" title="抵押贷"></i></a><a href="infor.html" class="f18" title="毕先生宝马320汽车质押贷款10万元" target="_blank">毕先生宝马320汽车质押贷款10万元</a></div>
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                   <tbody>
                     <tr>
@@ -238,7 +251,7 @@ $(function(){
                 </table>
               </li>
               <li>
-                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a href="#" class="f18" title="王先生克莱斯勒300C汽车质押贷款15万元" target="_blank">王先生克莱斯勒300C汽车质押贷款15万元</a></div>
+                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-che" title="抵押贷"></i></a><a href="#" class="f18" title="王先生克莱斯勒300C汽车质押贷款15万元" target="_blank">王先生克莱斯勒300C汽车质押贷款15万元</a></div>
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                   <tbody>
                     <tr>
@@ -274,7 +287,7 @@ $(function(){
           <div class="borrow-list">
             <ul>
               <li>
-                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a href="infor.html" class="f18" title="朱先生比亚迪S6汽车抵押贷款4.5万元" target="_blank">朱先生比亚迪S6汽车抵押贷款4.5万元</a></div>
+                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-che" title="抵押贷"></i></a><a href="infor.html" class="f18" title="朱先生比亚迪S6汽车抵押贷款4.5万元" target="_blank">朱先生比亚迪S6汽车抵押贷款4.5万元</a></div>
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                   <tbody>
                     <tr>
@@ -297,7 +310,7 @@ $(function(){
                 </table>
               </li>
               <li>
-                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a href="infor.html" class="f18" title="朱先生别克英朗汽车抵押贷款5万元" target="_blank">朱先生别克英朗汽车抵押贷款5万元</a></div>
+                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-che" title="抵押贷"></i></a><a href="infor.html" class="f18" title="朱先生别克英朗汽车抵押贷款5万元" target="_blank">朱先生别克英朗汽车抵押贷款5万元</a></div>
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                   <tbody>
                     <tr>
@@ -356,7 +369,7 @@ $(function(){
       <div class="mod mod-notice mrt20">
         <div class="hd">
           <h3>网站公告</h3>
-          <a href="/gonggao/news/index.html" class="fn-right">更多&gt;</a></div>
+          <a href="newslist.html" class="fn-right">更多&gt;</a></div>
         <div class="bd">
           <div class="article-list clearfix">
             <ul>

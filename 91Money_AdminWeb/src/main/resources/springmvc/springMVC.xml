@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--spring 的配置 约束文件用到哪个引入哪个 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!--扫描控制器类所在包 -->
+	<context:component-scan base-package="com.qfedu.controller,com.qfedu.spider"></context:component-scan>
+
+	<!--<bean id="logAdvice"  class="com.qfedu.core.log.LogAdvice"></bean>-->
+	<!--<aop:config >-->
+		<!--<aop:pointcut id="pt" expression="execution(* com.qfedu.service.admin.*.*(..))"></aop:pointcut>-->
+		<!--<aop:aspect id="apt" ref="logAdvice">-->
+			<!--<aop:around method="weriteLog" pointcut-ref="pt"></aop:around>-->
+		<!--</aop:aspect>-->
+	<!--</aop:config>-->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!--放行静态资源 -->
+	<mvc:default-servlet-handler/>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		  p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+</beans>

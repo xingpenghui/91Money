@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--spring 的配置 约束文件用到哪个引入哪个 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--加载mq配置文件-->
+	<context:property-placeholder location="classpath:activemqconfig.properties"></context:property-placeholder>
+	<!--创建mq的连接工厂-->
+    <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="${mqurl}"></property>
+		<property name="trustAllPackages" value="true"></property>
+	</bean>
+    <!--委托Spring消息中间件的连接工厂-->
+	<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="activeMQConnectionFactory"></property>
+    </bean>
+    <!--使用Spring消息中间件的模板-->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+    </bean>
+    <!--配置队列-->
+    <bean id="aqueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg name="name" value="${mqqueuename}"></constructor-arg>
+    </bean>
+
+</beans>

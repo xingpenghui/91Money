@@ -17,23 +17,6 @@
 	<context:component-scan
 		base-package="com.qfedu.service,com.qfedu.controller"></context:component-scan>
 
-	<!--&lt;!&ndash;1、命名  消费者名称&ndash;&gt;-->
-	<!--<dubbo:application name="ssoconsumer"></dubbo:application>-->
-	<!--&lt;!&ndash;2、注册中心&ndash;&gt;-->
-	<!--<dubbo:registry address="10.8.155.38:2181" protocol="zookeeper" check="false"></dubbo:registry>-->
-	<!--&lt;!&ndash;3、获取服务接口&ndash;&gt;-->
-	<!--<dubbo:reference interface="com.qfedu.sso.service.UserService" id="userProvider" version="1.0"></dubbo:reference>-->
-	<!--<mvc:annotation-driven></mvc:annotation-driven>-->
-	<!---->
-	<!--<bean id="logAdvice"  class="com.qfedu.core.log.LogAdvice"></bean>-->
-
-	<!--<aop:config >-->
-		<!--<aop:pointcut id="pt" expression="execution(* com.qfedu.sso.controller.*.*(..))"></aop:pointcut>-->
-		<!--<aop:aspect id="apt" ref="logAdvice">-->
-			<!--<aop:around method="weriteLog" pointcut-ref="pt"></aop:around>-->
-		<!--</aop:aspect>-->
-	<!--</aop:config>-->
-
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<!--放行静态资源 -->
 	<mvc:default-servlet-handler/>

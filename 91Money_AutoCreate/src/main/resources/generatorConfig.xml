@@ -51,8 +51,8 @@
 		<!--<table tableName="sys_user_role" domainObjectName="SysUserRole" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>-->
 		<!--<table tableName="sys_role_menu" domainObjectName="SysRoleMenu" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>-->
 		<table tableName="t_account" domainObjectName="Account" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
-		<table tableName="t_risk" domainObjectName="Account" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
-		<table tableName="t_loan" domainObjectName="Account" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
-		<table tableName="t_loanlog" domainObjectName="Account" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
+		<table tableName="t_risk" domainObjectName="Risk" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
+		<table tableName="t_loan" domainObjectName="Loan" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
+		<table tableName="t_loanlog" domainObjectName="LoanLog" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" ></table>
 	</context>
 </generatorConfiguration>

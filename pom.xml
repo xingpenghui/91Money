@@ -24,6 +24,7 @@
         <module>91Money_AutoCreate</module>
         <module>91Money_AdminService</module>
         <module>91Money_MoneyController</module>
+        <module>91Money_ElasticSearch</module>
     </modules>
     <packaging>pom</packaging>
 

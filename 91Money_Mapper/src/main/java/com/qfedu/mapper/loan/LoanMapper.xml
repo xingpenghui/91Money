@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.mapper.loan.LoanMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.domain.loan.Loan">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="rate" jdbcType="REAL" property="rate" />
+    <result column="monthes" jdbcType="INTEGER" property="monthes" />
+    <result column="returntype" jdbcType="INTEGER" property="returntype" />
+    <result column="minmoney" jdbcType="INTEGER" property="minmoney" />
+    <result column="disabledays" jdbcType="INTEGER" property="disabledays" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="createdate" jdbcType="DATE" property="createdate" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="authdate" jdbcType="DATE" property="authdate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qfedu.domain.loan.Loan">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, money, rate, monthes, returntype, minmoney, disabledays, title, aid, createdate, 
+    flag, authdate
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_loan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_loan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.domain.loan.Loan" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    insert into t_loan ( type, money,
+      rate, monthes, returntype, 
+      minmoney, disabledays, title, 
+      aid, createdate, flag,
+      authdate, description)
+    values ( #{type,jdbcType=INTEGER}, #{money,jdbcType=INTEGER},
+      #{rate,jdbcType=REAL}, #{monthes,jdbcType=INTEGER}, #{returntype,jdbcType=INTEGER}, 
+      #{minmoney,jdbcType=INTEGER}, #{disabledays,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{aid,jdbcType=INTEGER}, now(), 0,
+      #{authdate,jdbcType=DATE}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.domain.loan.Loan">
+    insert into t_loan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="monthes != null">
+        monthes,
+      </if>
+      <if test="returntype != null">
+        returntype,
+      </if>
+      <if test="minmoney != null">
+        minmoney,
+      </if>
+      <if test="disabledays != null">
+        disabledays,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="createdate != null">
+        createdate,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="authdate != null">
+        authdate,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=REAL},
+      </if>
+      <if test="monthes != null">
+        #{monthes,jdbcType=INTEGER},
+      </if>
+      <if test="returntype != null">
+        #{returntype,jdbcType=INTEGER},
+      </if>
+      <if test="minmoney != null">
+        #{minmoney,jdbcType=INTEGER},
+      </if>
+      <if test="disabledays != null">
+        #{disabledays,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="authdate != null">
+        #{authdate,jdbcType=DATE},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.domain.loan.Loan">
+    update t_loan
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=REAL},
+      </if>
+      <if test="monthes != null">
+        monthes = #{monthes,jdbcType=INTEGER},
+      </if>
+      <if test="returntype != null">
+        returntype = #{returntype,jdbcType=INTEGER},
+      </if>
+      <if test="minmoney != null">
+        minmoney = #{minmoney,jdbcType=INTEGER},
+      </if>
+      <if test="disabledays != null">
+        disabledays = #{disabledays,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        createdate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="authdate != null">
+        authdate = #{authdate,jdbcType=DATE},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qfedu.domain.loan.Loan">
+    update t_loan
+    set type = #{type,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=REAL},
+      monthes = #{monthes,jdbcType=INTEGER},
+      returntype = #{returntype,jdbcType=INTEGER},
+      minmoney = #{minmoney,jdbcType=INTEGER},
+      disabledays = #{disabledays,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      aid = #{aid,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=DATE},
+      flag = #{flag,jdbcType=INTEGER},
+      authdate = #{authdate,jdbcType=DATE},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.domain.loan.Loan">
+    update t_loan
+    set type = #{type,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=REAL},
+      monthes = #{monthes,jdbcType=INTEGER},
+      returntype = #{returntype,jdbcType=INTEGER},
+      minmoney = #{minmoney,jdbcType=INTEGER},
+      disabledays = #{disabledays,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      aid = #{aid,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=DATE},
+      flag = #{flag,jdbcType=INTEGER},
+      authdate = #{authdate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

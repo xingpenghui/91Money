@@ -29,7 +29,7 @@
                 <div class="panel-heading">个人资料</div>
                 <div class="panel panel-body">
 
-                    <form id="userInfoForm" class="form-horizontal" action="personal_basic_save" method="post"
+                    <form id="userInfoForm" class="form-horizontal" action="personal_basic.htmlsave" method="post"
                           style="width: 700px;">
                         <div class="form-group">
                             <label class="col-sm-4 control-label">
@@ -50,7 +50,7 @@
                                     </c:if>
                                     <c:if test="${!userinfo.isRealAuth}">
                                         未认证
-                                        <a href="realauth">[马上认证]</a>
+                                        <a href="real_auth.html">[马上认证]</a>
                                     </c:if>
                                 </p>
                             </div>
@@ -67,7 +67,7 @@
                                     </c:if>
                                     <c:if test="${!userinfo.isRealAuth}">
                                         未认证
-                                        <a href="realauth">[马上认证]</a>
+                                        <a href="real_auth.html">[马上认证]</a>
                                     </c:if>
                                 </p>
                             </div>

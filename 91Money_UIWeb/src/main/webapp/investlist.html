@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>91Money_投资列表</title>
+    <link href="css/common.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/common.js"></script>
+    <script type="application/javascript">
+        $(function () {
+           init();
+        })
+        function init() {
+            var t=getData();
+            console.log(t);
+            switch (t){
+                case "1"://信用标
+                    $("#sp1").html("信用标")
+                    break;
+                case "2"://抵押标
+                    $("#sp1").html("抵押标")
+                    break;
+
+            }
+        }
+    </script>
+</head>
+<body>
+<script src="script/head.js"></script>
+<!--中间内容-->
+<div class="main clearfix mrt30" data-target="sideMenu">
+    <div class="wrap">
+        <div class="page-left fn-left">
+            <div class="mod-borrow">
+                <div class="hd">
+                    <h2 class="pngbg"><i class="icon icon-ttyx"></i><span id="sp1">信用标</span></h2>
+                    <div class="fn-right f14 c-888">常规发标时间每天<span class="c-555">10:00，13:00和20:00</span>，其余时间根据需要随机发</div>
+                </div>
+                <div class="bd">
+                    <div class="des"><span class="fn-left">期限1-29天，期限短，收益见效快</span></div>
+                    <div class="borrow-list">
+                        <ul>
+                            <li>
+                                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-zhai" title="债权贷"></i></a><a href="infor.html" class="f18" title="金女士债权质押借款1万元" target="_blank">金女士债权质押借款1万元</a></div>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td width="260">借款金额<span class="f24 c-333">10000.00</span>元</td>
+                                        <td width="165">年利率<span class="f24 c-333">10.70% </span></td>
+                                        <td width="180" align="center">期限<span class="f24 c-orange">4</span>天</td>
+                                        <td><div class="circle">
+                                            <div class="left progress-bar">
+                                                <div class="progress-bgPic progress-bfb5">
+                                                    <div class="show-bar"> 56.3% </div>
+                                                </div>
+                                            </div>
+                                        </div></td>
+                                        <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </li>
+                            <li>
+                                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-zhai" title="债权贷"></i></a><a href="infor.html" class="f18" title="周先生债权质押借款0.1万元" target="_blank">周先生债权质押借款0.1万元</a></div>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td width="260">借款金额<span class="f24 c-333">1000.00</span>元</td>
+                                        <td width="165">年利率<span class="f24 c-333">10.85% </span></td>
+                                        <td width="180" align="center">期限<span class="f24 c-orange">7</span>天</td>
+                                        <td><div class="circle">
+                                            <div class="left progress-bar">
+                                                <div class="progress-bgPic progress-bfb1">
+                                                    <div class="show-bar"> 10.07% </div>
+                                                </div>
+                                            </div>
+                                        </div></td>
+                                        <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </li>
+                            <li>
+                                <div class="title"><a href="infor.html" target="_blank"><i class="icon icon-zhai" title="债权贷"></i></a><a href="infor.html" class="f18" title="周先生债权质押借款0.1万元" target="_blank">周先生债权质押借款0.1万元</a></div>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td width="260">借款金额<span class="f24 c-333">1000.00</span>元</td>
+                                        <td width="165">年利率<span class="f24 c-333">10.85% </span></td>
+                                        <td width="180" align="center">期限<span class="f24 c-orange">7</span>天</td>
+                                        <td><div class="circle">
+                                            <div class="left progress-bar">
+                                                <div class="progress-bgPic progress-bfb1">
+                                                    <div class="show-bar"> 10.07% </div>
+                                                </div>
+                                            </div>
+                                        </div></td>
+                                        <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="page-right fn-right" style="top: 0px;">
+    <div class="mod-risk-tip"><i class="icon icon-tip"></i><a href="/bxbz/index.html" class="c-orange">收益与风险并存，请理性选择平台</a></div>
+    <div class="mod mod-notice mrt20">
+        <div class="hd">
+            <h3>网站公告</h3>
+            <a href="newslist.html" class="fn-right">更多&gt;</a></div>
+        <div class="bd">
+            <div class="article-list clearfix">
+                <ul>
+                    <li><a href="#" title="关于“金融产品”产品的说明">关于“金融产品”产品的说明</a><span class="date">06-19</span></li>
+                    <li><a href="#" title="2018年9月10日发标预告">2018年9月10日发标预告</a><span class="date">09-10</span></li>
+                    <li><a href="#" title="关于平台“纪念抗战胜利70周年”9月3日***">关于平台“纪念抗战胜利70周年***</a><span class="date">09-02</span></li>
+                    <li><a href="#" title="关于P2P理财平台新系统升级的公告">关于P2P理财平台新系统***</a><span class="date">09-02</span></li>
+                    <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+                    <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+                    <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+                    <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+                    <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+                    <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+                    <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<!--网站底部-->
+<script src="script/foot.js"></script>
+</body>
+</html>

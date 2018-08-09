@@ -39,7 +39,7 @@
 	<aop:config>
 		<!--配置需要添加事务的方法 -->
 		<aop:pointcut
-			expression="execution(* com.qfedu.sso.provider.*.*(..))" id="tpt" />
+			expression="execution(* com.qfedu.provider.*.*(..))" id="tpt" />
 		<!--设置事务 -->
 		<aop:advisor advice-ref="txadvice" pointcut-ref="tpt" />
 	</aop:config>

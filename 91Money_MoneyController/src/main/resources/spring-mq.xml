@@ -43,6 +43,6 @@
         <!--配置主题或队列-->
         <property name="destination" ref="aqueue"></property>
         <!--配置消息监听器-->
-        <property name="messageListener" ref="listener"></property>
+        <property name="messageListener" ref="loanMessageListener"></property>
     </bean>
 </beans>

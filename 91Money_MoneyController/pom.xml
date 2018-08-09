@@ -20,7 +20,7 @@
         </dependency>
         <dependency>
             <groupId>com.qfedu</groupId>
-            <artifactId>91Money_Core</artifactId>
+            <artifactId>91Money_Provider</artifactId>
             <version>1.0.0</version>
         </dependency>
 

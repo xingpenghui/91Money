@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>91Money在线充值</title>
+    <link href="css/common.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/common.js"></script>
+</head>
+<body>
+<script src="script/head.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="">
+            <div class="panel panel-default"  style="margin: 0 auto;width: 95%;">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-yen"></span>&nbsp;&nbsp;在线支付
+                        <span class="pull-right"><a href="getOrderList">返回订单列表</a>
+				    	</span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form  action="http://ceshi.qfjava.xin/payment/weixinpay" method="get">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr>
+                                <td colspan="1">订单号:</td>
+                                <td colspan="3"><input type="text" class="form-control" name="orderId" ></td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">支付金额:</td>
+                                <td colspan="3">
+                                    <div class="input-group" style="width: 200px;">
+                                        <input type="text" class="form-control"  name="price" >
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-yen"></span></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">商品介绍:</td>
+                                <td colspan="3"><input type="text" class="form-control" name="body" value="" readonly="readonly">
+                                    <!-- 设置 程序回传到的链接地址 -->
+                                    <input type="hidden" class="form-control" name="url" value="http://localhost:8080/feri/paySuccess">
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="pull-right" style="margin-right: 30px;">
+                            <input type="submit" value="确认支付" class="btn btn-warning btn-lg">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--网站底部-->
+    <script src="script/foot.js"></script>
+</body>
+</html>

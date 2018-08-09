@@ -11,6 +11,7 @@
         <module name="91Money_AutoCreate" />
         <module name="91Money_Core" />
         <module name="91Money_Domain" />
+        <module name="91Money_ElasticSearch" />
         <module name="91Money_Mapper" />
         <module name="91Money_MoneyController" />
         <module name="91Money_Provider" />

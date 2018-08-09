@@ -14,6 +14,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.oracle</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>7</version>
+        </dependency>
+        <dependency>
             <groupId>com.qfedu</groupId>
             <artifactId>91Money_Core</artifactId>
             <version>1.0.0</version>
@@ -54,6 +59,27 @@
             <artifactId>activemq-spring</artifactId>
             <version>5.15.4</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>5.6.10</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/transport -->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>5.6.10</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-elasticsearch</artifactId>
+            <version>3.0.9.RELEASE</version>
+        </dependency>
+
+
+
 
 
 

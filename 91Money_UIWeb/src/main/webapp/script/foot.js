@@ -4,7 +4,7 @@ document.writeln("    <div class=\'ft-inner clearfix\'>");
 document.writeln("    <div class=\'ft-helper clearfix\'>");
 document.writeln("    <dl>");
 document.writeln("    <dt>关于我们</dt>");
-document.writeln("    <dd><a href=\'公司简介.html\'>公司简介</a><a href=\'管理团队.html\'>管理团队</a><a href=\'网站公告.html\'>网站公告</a></dd>");
+document.writeln("    <dd><a href=\'company.html\'>公司简介</a><a href=\'管理团队.html\'>管理团队</a><a href=\'网站公告.html\'>网站公告</a></dd>");
 document.writeln("</dl>");
 document.writeln("<dl>");
 document.writeln("<dt>相关业务</dt>");

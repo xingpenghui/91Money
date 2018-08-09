@@ -1,6 +1,6 @@
 document.writeln("<div id=\'personal-left\' class=\'personal-left\'>");
 document.writeln("    <ul>");
-document.writeln("        <li class=\'pleft-cur\'><span><a href=\'account\'><i class=\'dot dot1\'></i>账户总览</a></span></li>");
+document.writeln("        <li class=\'pleft-cur\'><span><a href=\'account.html\'><i class=\'dot dot1\'></i>账户总览</a></span></li>");
 document.writeln("        <li><span><a style=\'font-size:14px;padding-left:50px;\' href=\'个人中心-资金记录 .html\'>资金记录</a></span></li>");
 document.writeln("        <li><span><a style=\'font-size:14px;padding-left:50px;\' href=\'个人中心-投资记录.html\'>投资记录</a></span></li>");
 document.writeln("        <li><span><a style=\'font-size:14px;padding-left:50px;\' href=\'个人中心-回款计划.html\'>回款计划</a></span></li>");
@@ -11,7 +11,7 @@ document.writeln("        <li style=\'position:relative;\' class=\'\'> <span> <a
 document.writeln("        <li class=\'\'><span><a style=\'font-size:14px;padding-left:50px;\' href=\'个人中心-兑换历史.html\'>兑换历史</a></span></li>");
 document.writeln("        <li style=\'position:relative;\'> <span> <a href=\'个人中心-系统消息.html\'><i class=\'dot dot08\'></i>系统信息 </a> </span> </li>");
 document.writeln("        <li><span><a href=\'personal_info.html\'><i class=\'dot dot09\'></i>个人中心</a></span></li>");
-document.writeln("        <li class=\'\'><span><a style=\'font-size:14px;padding-left:50px;\' href=\'personal_basic\'>个人资料</a></span></li>");
+document.writeln("        <li class=\'\'><span><a style=\'font-size:14px;padding-left:50px;\' href=\'personal_basic.html\'>个人资料</a></span></li>");
 document.writeln("        <li class=\'\'><span><a style=\'font-size:14px;padding-left:50px;\' href=\'real_auth\'>实名认证</a></span></li>");
 document.writeln("        <li class=\'\'><span><a style=\'font-size:14px;padding-left:50px;\' href=\'user_file\'>风控资料</a></span></li>");
 document.writeln("    </ul>");

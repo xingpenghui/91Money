@@ -5,7 +5,6 @@
     <title>我要借款</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
@@ -37,11 +36,8 @@
 <body>
 <script src="script/head.js"></script>
 <div class="wrapper wbgcolor">
-
     <!-- 网页内容 -->
     <div class="container">
-
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
@@ -52,7 +48,22 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal el-borrow-form" id="borrowForm" novalidate="novalidate" method="post"
-                      action="borrow_apply_save">
+                      action="http://localhost:9092/loansave.do">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            借款类型
+                        </label>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                              <select name="type">
+                                  <option value="0" selected>信用标</option>
+                                  <option value="1">抵押标</option>
+                                  <option value="2">政信标</option>
+                                  <option value="3">债券</option>
+                              </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">
                             借款金额
@@ -151,7 +162,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary col-lg-offset-3" type="submit" data-loading-text="提交">
+                        <button class="btn btn-primary col-lg-offset-3" type="button" onclick="add()" data-loading-text="提交">
                             提交申请
                         </button>
                     </div>
@@ -179,6 +190,17 @@
 <script src="script/foot.js"></script>
 
 <script type="text/javascript">
+    function add(){
+        var f=$("#borrowForm");
+        ajax1(f.attr("method"),f.attri("action"),f.serialize(),function (obj) {
+            if(obj.code==0){
+                layer.msg("借款申请成功，等待审核……")
+                location.href="borrow_apply_result.html";
+            }else{
+                layer.msg(obj.msg);
+            }
+        })
+    }
     $(function(){
         $("#borrowForm").validate({
             rules : {

@@ -41,7 +41,7 @@
                         <ul class="my-list-group">
                             <li>
                                 <c:if test="${!userInfo.isBasicInfo}">
-                                    <a href="/personal_basic">填写基本资料</a>
+                                    <a href="personal_basic.html">填写基本资料</a>
                                     <span class="glyphicon glyphicon-remove" style="color:red;"></span>
                                 </c:if>
                                 <c:if test="${userInfo.isBasicInfo}">
@@ -51,7 +51,7 @@
                             </li>
                             <li>
                                 <c:if test="${!userInfo.isRealAuth}">
-                                    <a href="/real_auth">身份认证</a>
+                                    <a href="real_auth.html">身份认证</a>
                                     <span class="glyphicon glyphicon-remove" style="color:red;"></span>
                                 </c:if>
                                 <c:if test="${userInfo.isRealAuth}">
@@ -60,7 +60,7 @@
                             </li>
                             <li>
                                 <c:if test="${userInfo.authScore lt creditBorrowScore}">
-                                    <a href="/user_file">材料认证分数达到${creditBorrowScore}分</a>
+                                    <a href="user_file.html">材料认证分数达到${creditBorrowScore}分</a>
                                     <span class="glyphicon glyphicon-remove" style="color:red;"></span>
                                 </c:if>
                                 <c:if test="${userInfo.authScore ge creditBorrowScore}">
@@ -98,7 +98,7 @@
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">车易贷</h3>
+                        <h3 class="panel-title">抵押贷</h3>
                     </div>
                     <div class="panel-body">
                         <p class="text-primary mb15">
@@ -109,7 +109,7 @@
                             <li>填写基本资料</li>
                             <li>身份认证</li>
                             <li>材料认证分数达到30分</li>
-                            <li>提交车辆抵押相关资料</li>
+                            <li>提交房屋/车辆抵押相关资料</li>
                             <li>视频认证</li>
                         </ul>
                         <div class="text-center">
@@ -123,11 +123,11 @@
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">房易贷</h3>
+                        <h3 class="panel-title">征信贷</h3>
                     </div>
                     <div class="panel-body">
                         <p class="text-primary mb15">
-                            可借金额 <i>¥ 10,0000.00</i>
+                            可借金额 <i>¥ 1000.00</i>
                         </p>
                         <ul class="my-list-group">
                             <li>填写基本资料</li>
