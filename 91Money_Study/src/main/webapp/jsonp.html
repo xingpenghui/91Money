@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp实现跨域</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+
+<button onclick="getJsonp()">jsonp实现跨域</button>
+<script type="application/javascript">
+    function getJsonp() {
+        $.ajax({
+            url:"http://localhost:9092/users",
+            type:"get",
+            dataType:"jsonp",
+            success:function (obj) {
+                alert(obj.status);
+            }
+        })
+    }
+</script>
+</body>
+</html>

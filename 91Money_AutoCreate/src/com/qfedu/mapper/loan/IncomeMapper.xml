@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.mapper.loan.IncomeMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.domain.loan.Income">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="invertid" jdbcType="INTEGER" property="invertid" />
+    <result column="expectmoney" jdbcType="INTEGER" property="expectmoney" />
+    <result column="overduemoney" jdbcType="INTEGER" property="overduemoney" />
+    <result column="createdate" jdbcType="DATE" property="createdate" />
+    <result column="startdate" jdbcType="DATE" property="startdate" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="enddate" jdbcType="DATE" property="enddate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, invertid, expectmoney, overduemoney, createdate, startdate, flag, enddate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_income
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_income
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.domain.loan.Income">
+    insert into t_income (id, invertid, expectmoney, 
+      overduemoney, createdate, startdate, 
+      flag, enddate)
+    values (#{id,jdbcType=INTEGER}, #{invertid,jdbcType=INTEGER}, #{expectmoney,jdbcType=INTEGER}, 
+      #{overduemoney,jdbcType=INTEGER}, #{createdate,jdbcType=DATE}, #{startdate,jdbcType=DATE}, 
+      #{flag,jdbcType=INTEGER}, #{enddate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.domain.loan.Income">
+    insert into t_income
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="invertid != null">
+        invertid,
+      </if>
+      <if test="expectmoney != null">
+        expectmoney,
+      </if>
+      <if test="overduemoney != null">
+        overduemoney,
+      </if>
+      <if test="createdate != null">
+        createdate,
+      </if>
+      <if test="startdate != null">
+        startdate,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="enddate != null">
+        enddate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="invertid != null">
+        #{invertid,jdbcType=INTEGER},
+      </if>
+      <if test="expectmoney != null">
+        #{expectmoney,jdbcType=INTEGER},
+      </if>
+      <if test="overduemoney != null">
+        #{overduemoney,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=DATE},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.domain.loan.Income">
+    update t_income
+    <set>
+      <if test="invertid != null">
+        invertid = #{invertid,jdbcType=INTEGER},
+      </if>
+      <if test="expectmoney != null">
+        expectmoney = #{expectmoney,jdbcType=INTEGER},
+      </if>
+      <if test="overduemoney != null">
+        overduemoney = #{overduemoney,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        createdate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="startdate != null">
+        startdate = #{startdate,jdbcType=DATE},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="enddate != null">
+        enddate = #{enddate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.domain.loan.Income">
+    update t_income
+    set invertid = #{invertid,jdbcType=INTEGER},
+      expectmoney = #{expectmoney,jdbcType=INTEGER},
+      overduemoney = #{overduemoney,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=DATE},
+      startdate = #{startdate,jdbcType=DATE},
+      flag = #{flag,jdbcType=INTEGER},
+      enddate = #{enddate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

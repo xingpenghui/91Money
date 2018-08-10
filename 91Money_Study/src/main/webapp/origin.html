@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跨域请求</title>
+    <script src="jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<a href="http://localhost:9091/data">我是a标签</a>
+<br/>
+<form action="http://localhost:9091/data">
+    <input type="submit" value="表单跨域">
+</form>
+<br/>
+
+<button onclick="getW()">获取天气</button>
+<p id="p1" style="font-size: 30px;color: red"></p>
+
+<div id="dv1">
+    <h1 onclick="getW()">{{msg}}</h1>
+</div>
+<script type="application/javascript">
+    var  app1=new Vue({
+        el:"#dv1",
+        data:{
+            msg:"天气信息未知"
+        }
+    });
+    function getW() {
+        $.get("http://localhost:9091/data",null,function (obj) {
+            $("#p1").html(obj.status);
+           app1.msg=obj.id+"-最低温："+obj.minT+"-最高温："+obj.maxT+"-建议："+obj.status
+        });
+    }
+</script>
+</body>
+</html>
