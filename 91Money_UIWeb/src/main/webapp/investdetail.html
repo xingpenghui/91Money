@@ -10,19 +10,59 @@
     <script type="text/javascript" src="script/common.js"></script>
     <script type="text/javascript" src="script/main.js"></script>
     <script type="text/javascript" src="script/core.js"></script>
+    <script type="application/javascript" src="script/vue.min.js"></script>
+
+    <script type="application/javascript">
+        $(function () {
+            init();
+        })
+        var detail=new Vue({
+            el:"#dvdata",
+            data:{}
+        })
+        function init() {
+            $.get("http://localhost:9092/loandetail.do","id="+getData(),function (obj) {
+                detail.data=obj;
+                if(obj.flag==1){
+                    $("#a2").css("disploy","block");
+                    $("#a1").css("disploy","none");
+                }else {
+                    $("#a1").css("disploy","block");
+                    $("#a2").css("disploy","none");
+                }
+            });
+        }
+        //
+        function save() {
+            //验证余额是否够支付？
+            var t=$("#tz").val();//投资金额
+            if(detail.totalmoney>parseFloat(t)){
+                //够：
+                var f=$("#stateform");
+                ajax1(f.attr("method"),f.attr("action"),f.serialize(),function (obj) {
+                    if(obj.code==0){
+                        location.href="invest.html";
+                    }
+                })
+            }else {
+                //不够--充值
+                location.href="pay.html";
+            }
+        }
+    </script>
 </head>
 <body>
 <script src="script/head.js"></script>
 <!--中间内容-->
 <div class="main clearfix mrt30" data-target="sideMenu">
 
-    <div class="m-page">
+    <div class="m-page" id="dvdata">
         <div class="m-container g-ohide mt10">
             <div class="m-crumbs">
                 <ul class="g-left">
                     <li><a href="/"><i class="iconfont">&#xe630;</i> 首页</a> &nbsp;>&nbsp;</li>
                     <li><a href="invest.html">投资列表</a> &nbsp;>&nbsp;</li>
-                    <li>抵押标</li>
+                    <li>信用标</li>
                 </ul>
             </div>
         </div>
@@ -30,13 +70,13 @@
         <div class="m-container m-globalbox g-ohide m-detailbid mt10">
             <h5 class="darailbid-title g-ohide m-boborder pt15 pb15 pl10">
                 <img src="images/bor_pic07.png" style="width: 60px; height: 18px;" class="g-left mr10" />
-                <span class="fs18 g-left">抵押标</span>
+                <span class="fs18 g-left">信用标</span>
                 <span class="g-right title-time js-time mr10"></span>
             </h5>
             <div class="g-left wg9 g-ohide m-rightborder">
                 <ul class="darailbid-baselist">
                     <li class="wgm4 g-noneborder">
-                        <span class="t-tl108 fs72 fcblue-3">8</span>
+                        <span class="t-tl108 fs72 fcblue-3">{{rate*100}}</span>
                         <span class="t-tt175 fs30 fcblue-3">.00 <span class="fs14">%</span></span>
                         <span class="t-tl185 fs30 fcblue-3"></span>
                         <div class="t-tl175 js-stuedown">
@@ -46,19 +86,19 @@
                     </li>
                     <li class="wg2">
                         <span class="g-block mt30">借款期限</span>
-                        <span class="fs30">6</span>
+                        <span class="fs30">{{monthes}}</span>
                         <span>月</span>
                     </li>
                     <li class="wg3">
                         <span class="g-block mt30">借款金额</span>
-                        <span class="fs24">300,000.00</span>
+                        <span class="fs24">{{money}}</span>
                         <span>元</span>
                     </li>
                 </ul>
                 <div class="g-clear pa15 g-ohide fcblack-1">
                     <div class="ui-bidspeed g-left wg3 mt5"><span style="width: 0;" class="g-block js-stepw"></span></div>
                     <div class="g-right g-fleft wgm6 pl5">
-                        当前已完成 <span class="js-stepl"></span> ，共有 <span class="js-binUserCount"></span> 人投资，剩余可投资金额 200,000.00 元。
+                        当前已完成 <span class="js-stepl"><label>{{completemoney}}</label>元</span> ，共有 <span class="js-binUserCount">{{investperson}}</span> 人投资，剩余可投资金额 <label>{{money-completemoney}}</label> 元。
                     </div>
                 </div>
                 <div class="darailbid-box">
@@ -66,35 +106,46 @@
                         <img src="images/2017110_1609406.jpg" height="158" />
                     </div>
                     <ul class="darailbid-list g-right">
-                        <li>项目编号：</li>
+                        <li>项目编号：<label>{{id}}</label></li>
                         <li>借款协议：《<a href="/Agreement/?id=3&type=borrow" target="_blank">91Money借款协议</a>》</li>
                         <li>还款方式：按月付息到期还本</li>
                         <li>起 息 日：投标成功时起息</li>
-                        <li>开标时间：2014-11-04 21:31:14</li>
-                        <li>结束时间：2014-11-05 21:30:23</li>
+                        <li>开标时间：<label>{{authdate}}</label></li>
+                        <li>结束时间：<label>{{enddate}}</label></li>
                         <li class="m-bidOther">
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="g-right wg3 g-ohide">
-                <form class="js-auto js-vtip" method="post" id="stateform" action="ajax.htm?action=success" >
+                <form class="js-auto js-vtip" method="post" id="stateform" action="http://localhost:9092/investsave.do" >
                     <div class="detailbid-usermoenytext">
-                        <span class="g-left fs16">可用余额：</span>
+                        <span class="g-left fs16">可用余额：<label>{{totalmoney}}</label>元</span>
                         <a class="g-right btn-bordsmall c-normal" href="pay.html">充 值</a>
                     </div>
                     <div class="detailbid-usermoeny">
-                        <span class="fs24">1,000,000.00</span> 元
+                        <span class="fs24">{{money-completemoney}}</span> 元
                         <span class="fs12 ff-songTi"></span>
                     </div>
+                    <div class="detailbid-usermoeny">
+                        <span class="fs24">投资金额：</span>
+                        <input type="number" class="fs12 ff-songTi" placeholder="请输入投资金额" id="tz"></input>
+                    </div>
+                    <div class="detailbid-usermoeny">
+                        <span class="fs24">付款方式：</span>
+                        <input type="radio" class="fs12 ff-songTi"name="type" value="0">余额</input>
+                        <input type="radio" class="fs12 ff-songTi"name="type" value="1">在线</input>
+                    </div>
                     <div class="detailbid-usermoeny fs18 fcred-3 g-fbold">
-                        <span id="content_content_ownborrowState">正在投标中</span>
+                        <span id="content_content_ownborrowState">{{flagname}}</span>
                     </div>
                     <ul class="detailbid-userbidlist mt20">
-                        <li>起投金额：100.00 元</li>
-                        <li>最大可投金额： 100,000.00 元</li>
+                        <li>起投金额：<label>{{minmoney}}</label>元</li>
+                        <li>最大可投金额： <label>{{money*0.5-investmoney>0?money*0.5:money-investmoney)}}</label> 元</li>
                     </ul>
-                    <a class="g-block btn-nobord c-normal w218 mt20 pt5 pb5" href="invest.html">看看别的项目</a>
+
+                    <a id="a1" class="g-block btn-nobord c-normal w218 mt20 pt5 pb5" href="invest.html">看看别的项目</a>
+                    <a id="a2" class="g-block btn-nobord c-normal w218 mt20 pt5 pb5" href="javascript:save();">投资</a>
                 </form>
                 <a class="detailbid-userhelpline" target="_blank" href="msghelp.html">操作遇到了问题？联系客服</a>
             </div>

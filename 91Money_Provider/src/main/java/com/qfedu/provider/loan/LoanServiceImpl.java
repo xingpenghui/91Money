@@ -1,6 +1,7 @@
 package com.qfedu.provider.loan;
 
 import com.qfedu.core.util.ExecuteUtils;
+import com.qfedu.core.vo.LoanVo;
 import com.qfedu.core.vo.R;
 import com.qfedu.domain.loan.Loan;
 import com.qfedu.mapper.loan.LoanMapper;
@@ -37,5 +38,10 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public List<Loan> queryAll(int type) {
         return mapper.selectByType(type);
+    }
+
+    @Override
+    public LoanVo queryById(int id) {
+        return mapper.queryById(id);
     }
 }

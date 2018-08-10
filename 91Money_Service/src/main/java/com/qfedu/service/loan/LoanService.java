@@ -1,5 +1,6 @@
 package com.qfedu.service.loan;
 
+import com.qfedu.core.vo.LoanVo;
 import com.qfedu.core.vo.R;
 import com.qfedu.domain.loan.Loan;
 
@@ -14,4 +15,5 @@ public interface LoanService {
     List<Loan> queryAll();
     List<Loan> queryAll(int type);
 
+    LoanVo queryById(int id);
 }

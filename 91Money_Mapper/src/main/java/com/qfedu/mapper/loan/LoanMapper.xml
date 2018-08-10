@@ -51,4 +51,11 @@
   <select id="selectByType" resultMap="BaseResultMap">
     select * from t_loan where type =#{type};
   </select>
+
+  <select id="queryById" resultType="com.qfedu.core.vo.LoanVo">
+    select l.*,a.totalmoney,li.* from t_loan l
+left join t_account a on l.aid=a.id
+left join (select sum(money) investmoney,count(*) investperson,lid from t_invest group by lid) li
+on li.lid=l.id where l.id=#{id}
+  </select>
 </mapper>
