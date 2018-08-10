@@ -30,6 +30,11 @@ public class JedisUtil {
     public void addStr(String key,String value){
         jedis.set(key,value);
     }
+
+    public void addStr(String key,String value,TimeUnit unit,int time){
+        addStr(key,value);
+        expire(key,unit,time);
+    }
     //新增 list
     public void addList(String key,String... values){
         jedis.lpush(key,values);
@@ -46,6 +51,10 @@ public class JedisUtil {
     public void addZSet(String key, Map<String,Double> map){
         jedis.zadd(key,map);
     }
+    public void addHash(String key,String field,String value){
+        jedis.hset(key,field,value);
+    }
+
     //删除
     public void delKey(String... keys){
         jedis.del(keys);
@@ -63,6 +72,7 @@ public class JedisUtil {
     public void delHash(String key,String... filed){
         jedis.hdel(key,filed);
     }
+
     //修改
     public void updList(String key ,long index,String value){
         jedis.lset(key,index,value);
@@ -114,8 +124,8 @@ public class JedisUtil {
     public boolean isKey(String key){
         return jedis.exists(key);
     }
-    public Set<String> keys(String p){
 
+    public Set<String> keys(String p){
         return jedis.keys(p);
     }
     public long countKeys(){
